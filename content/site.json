@@ -40,8 +40,12 @@
     "country": "IN",
     "sameAs": [
       "https://linkedin.com/in/rudeep-ramesh",
-      "https://www.instagram.com/REPLACE_WITH_YOUR_INSTAGRAM",
-      "https://www.youtube.com/@REPLACE_WITH_YOUR_YOUTUBE"
+      "https://www.instagram.com/rudeep_ramesh/",
+      "https://www.wikidata.org/wiki/Q140529906",
+      "https://www.behance.net/rudeepramesh",
+      "https://contra.com/rudeep_ramesh_murcdg0l",
+      "https://www.facebook.com/rudeep.ramesh/",
+      "https://m3db.com/rudeep-ramesh"
     ],
     "jobTitle": "Motion Designer",
     "email": "rudeep.ramesh0007@gmail.com",
@@ -52,7 +56,7 @@
     "Motion Graphics",
     "Color Grading",
     "Cinematography",
-    "2D Animation",
+    "2D&3D Animation",
     "Ad Films",
     "Generative AI"
   ],
@@ -131,7 +135,7 @@
       "location": "Kannur",
       "role": "Motion Designer",
       "org": "— ABC Group India",
-      "desc": "Directed ad films and produced 150+ short-form pieces end-to-end across education, food, retail and manufacturing — +30% engagement, +25% brand recognition. Taught video production and editing at ABcademy.",
+      "desc": "Directed ad films and produced 150+ short-form pieces end-to-end across education, food, retail and manufacturing — +30% engagement, +25% brand recognition. Taught video production and editing at Abcademy.",
       "linkLabel": "",
       "linkHref": ""
     },
@@ -399,6 +403,6 @@
     "title": "Rudeep Ramesh M V — Motion Designer & Video Producer",
     "description": "Rudeep Ramesh M V is a motion designer and video producer at Eaton Business School, based in Kannur, Kerala. 4+ years across direction, camera, editing and motion graphics.",
     "canonical": "https://rudeepramesh.com",
-    "ogImage": "assets/rudeep.jpg"
+    "ogImage": "images/uploads/rudeep.jpg"
   }
 }
