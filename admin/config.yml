@@ -1,0 +1,250 @@
+# Decap CMS configuration — edits content/site.json in your GitHub repo.
+#
+# ⚠️ ONE THING TO CHANGE: replace YOUR_GITHUB_USERNAME/YOUR_REPO below with your
+# actual repo (e.g. rudeepramesh/rudeepramesh.com). See README.md → step 4.
+
+backend:
+  name: github
+  repo: YOUR_GITHUB_USERNAME/YOUR_REPO
+  branch: main
+
+# Lets you run the CMS on your own Mac without any login:
+#   1) in the site folder run:  npx decap-server
+#   2) in another terminal run: npx serve
+#   3) open http://localhost:3000/admin
+local_backend: true
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+site_url: https://rudeepramesh.com
+display_url: https://rudeepramesh.com
+
+collections:
+  - name: "projects"
+    label: "Case Study Projects"
+    label_singular: "Project"
+    description: "Each project becomes its own page at /work/<name>/. Add, edit or delete freely."
+    folder: "content/projects"
+    create: true
+    delete: true
+    extension: "json"
+    format: "json"
+    identifier_field: "title"
+    slug: "{{slug}}"
+    summary: "{{fields.order}} — {{fields.title}}"
+    sortable_fields: ["order", "title", "year"]
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Display order (lower = first)", name: "order", widget: "number", default: 10, value_type: "int" }
+      - { label: "Show on homepage as featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Client", name: "client", widget: "string", required: false }
+      - { label: "Your role", name: "role", widget: "string", required: false }
+      - { label: "Year", name: "year", widget: "string", required: false }
+      - { label: "Category / type", name: "category", widget: "string", hint: "e.g. Ad Film, Testimonial Film, Short Film" }
+      - { label: "Thumbnail image", name: "thumb", widget: "image" }
+      - { label: "Video link (Drive / YouTube)", name: "videoUrl", widget: "string" }
+      - { label: "One-line summary (used for Google description)", name: "summary", widget: "text" }
+      - { label: "Overview", name: "overview", widget: "text", required: false }
+      - { label: "The challenge", name: "challenge", widget: "text", required: false }
+      - { label: "Approach", name: "approach", widget: "text", required: false }
+      - { label: "Outcome / results", name: "results", widget: "text", required: false }
+      - { label: "Tools used", name: "tools", widget: "list", required: false, allow_add: true }
+
+  - name: "site"
+    label: "Website Content"
+    files:
+      - name: "content"
+        label: "Edit Site (all sections)"
+        file: "content/site.json"
+        fields:
+
+          - label: "SEO & Search"
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Browser / Google title", name: "title", widget: "string" }
+              - { label: "Google description (max ~155 chars)", name: "description", widget: "text" }
+              - { label: "Canonical URL", name: "canonical", widget: "string", hint: "Your live domain, no trailing slash" }
+              - { label: "Social preview image", name: "ogImage", widget: "image", allow_multiple: false }
+
+          - label: "Identity / Schema (Google Knowledge Graph)"
+            name: "schema"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Full name", name: "name", widget: "string" }
+              - { label: "Short name", name: "alternateName", widget: "string" }
+              - { label: "Job title", name: "jobTitle", widget: "string" }
+              - { label: "Works for", name: "worksFor", widget: "string" }
+              - { label: "City", name: "locality", widget: "string" }
+              - { label: "State", name: "region", widget: "string" }
+              - { label: "Country code", name: "country", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Bio for Google (2–3 sentences)", name: "description", widget: "text" }
+              - { label: "Skills / topics (knowsAbout)", name: "knowsAbout", widget: "list", allow_add: true }
+              - label: "Social profile URLs (sameAs — keep in sync with your real profiles!)"
+                name: "sameAs"
+                widget: "list"
+                allow_add: true
+                hint: "LinkedIn, Instagram, YouTube, Behance, Wikidata… full URLs"
+
+          - label: "Theme"
+            name: "theme"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Accent color", name: "accent", widget: "color" }
+              - { label: "Film grain overlay", name: "filmGrain", widget: "boolean" }
+
+          - label: "Navigation"
+            name: "nav"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Logo name", name: "name", widget: "string" }
+              - { label: "Logo suffix", name: "suffix", widget: "string" }
+
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Role line", name: "role", widget: "string" }
+              - { label: "First name (big)", name: "firstName", widget: "string" }
+              - { label: "Last name (outlined)", name: "lastName", widget: "string" }
+              - { label: "Tagline", name: "tagline", widget: "text" }
+
+          - label: "Marquee band words"
+            name: "marquee"
+            widget: "list"
+            allow_add: true
+            collapsed: true
+
+          - { label: "Brands strip heading", name: "brandsLabel", widget: "string", required: false }
+          - label: "Brands / clients (scrolling logo strip)"
+            name: "brands"
+            widget: "list"
+            collapsed: true
+            summary: "{{fields.name}}"
+            hint: "Upload a logo (transparent PNG/SVG works best). If no logo, the name shows as text."
+            fields:
+              - { label: "Brand name", name: "name", widget: "string" }
+              - { label: "Logo image (optional)", name: "logo", widget: "image", required: false }
+
+          - label: "Featured Work (big card)"
+            name: "featured"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Byline", name: "byline", widget: "string" }
+              - { label: "Frame label", name: "frame", widget: "string" }
+              - { label: "Badge left", name: "badgeLeft", widget: "string" }
+              - { label: "Badge right", name: "badgeRight", widget: "string" }
+              - { label: "Video link", name: "href", widget: "string" }
+              - { label: "Thumbnail", name: "thumb", widget: "image", allow_multiple: false }
+
+          - label: "Films (main grid)"
+            name: "films"
+            widget: "list"
+            collapsed: true
+            summary: "{{fields.num}} — {{fields.title}}"
+            fields:
+              - { label: "Number", name: "num", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Tag line", name: "tag", widget: "string" }
+              - { label: "Frame label", name: "frame", widget: "string" }
+              - { label: "Badge", name: "badge", widget: "string" }
+              - { label: "Video link", name: "href", widget: "string" }
+              - { label: "Thumbnail", name: "thumb", widget: "image", allow_multiple: false }
+
+          - label: "Reels & Social (vertical grid)"
+            name: "reels"
+            widget: "list"
+            collapsed: true
+            summary: "{{fields.num}} — {{fields.title}}"
+            fields:
+              - { label: "Number", name: "num", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Tag line", name: "tag", widget: "string" }
+              - { label: "Frame label", name: "frame", widget: "string" }
+              - { label: "★ Featured badge", name: "highlight", widget: "boolean", default: false }
+              - { label: "Reel link", name: "href", widget: "string" }
+              - { label: "Thumbnail", name: "thumb", widget: "image", allow_multiple: false }
+
+          - label: "About"
+            name: "about"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Portrait photo", name: "portrait", widget: "image", allow_multiple: false }
+              - { label: "Portrait caption — name", name: "captionName", widget: "string" }
+              - { label: "Portrait caption — location", name: "captionLocation", widget: "string" }
+              - { label: "Bio (HTML allowed for accent highlights)", name: "bio", widget: "text", hint: 'Wrap words in <span style="color:var(--ac);">…</span> to highlight them' }
+              - { label: "Based in", name: "basedIn", widget: "string" }
+              - { label: "Languages", name: "languages", widget: "string" }
+              - { label: "Also", name: "also", widget: "string" }
+              - label: "Stats"
+                name: "stats"
+                widget: "list"
+                fields:
+                  - { label: "Value", name: "value", widget: "string" }
+                  - { label: "Label", name: "label", widget: "string" }
+
+          - label: "Experience"
+            name: "experience"
+            widget: "list"
+            collapsed: true
+            summary: "{{fields.role}} {{fields.org}}"
+            fields:
+              - { label: "Period", name: "period", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }
+              - { label: "Role", name: "role", widget: "string" }
+              - { label: "Organisation (start with —)", name: "org", widget: "string" }
+              - { label: "Description", name: "desc", widget: "text" }
+              - { label: "Button label (optional)", name: "linkLabel", widget: "string", required: false, default: "" }
+              - { label: "Button link (optional)", name: "linkHref", widget: "string", required: false, default: "" }
+
+          - label: "Toolkit / Skills"
+            name: "skills"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Big topline tools", name: "topline", widget: "list", allow_add: true }
+              - label: "Skill groups"
+                name: "groups"
+                widget: "list"
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: "Group title", name: "title", widget: "string" }
+                  - { label: "Items", name: "items", widget: "list", allow_add: true }
+              - { label: "AI section title", name: "aiTitle", widget: "string" }
+              - { label: "AI tools", name: "aiTools", widget: "list", allow_add: true }
+
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Heading line 1", name: "headingLine1", widget: "string" }
+              - { label: "Heading line 2", name: "headingLine2", widget: "string" }
+              - { label: "Heading accent word", name: "headingAccent", widget: "string" }
+              - label: "Contact rows"
+                name: "links"
+                widget: "list"
+                summary: "{{fields.label}} — {{fields.value}}"
+                fields:
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Shown value", name: "value", widget: "string" }
+                  - { label: "Link (mailto:, tel:, or https://)", name: "href", widget: "string" }
+
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Copyright", name: "copyright", widget: "string" }
+              - { label: "Location line", name: "location", widget: "string" }
