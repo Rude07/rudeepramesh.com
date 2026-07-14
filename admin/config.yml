@@ -5,7 +5,7 @@
 
 backend:
   name: github
-  repo: YOUR_GITHUB_USERNAME/YOUR_REPO
+  repo: Rude07/rudeepramesh.com
   branch: main
 
 # Lets you run the CMS on your own Mac without any login:
