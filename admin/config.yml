@@ -7,6 +7,8 @@ backend:
   name: github
   repo: Rude07/rudeepramesh.com
   branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
 
 # Lets you run the CMS on your own Mac without any login:
 #   1) in the site folder run:  npx decap-server
