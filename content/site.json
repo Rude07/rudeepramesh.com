@@ -1,0 +1,119 @@
+{
+  "seo": {
+    "title": "Rudeep Ramesh M V — Motion Designer & Video Producer",
+    "description": "Rudeep Ramesh M V is a motion designer and video producer at Eaton Business School, based in Kannur, Kerala. 4+ years across direction, camera, editing and motion graphics.",
+    "canonical": "https://rudeepramesh.com",
+    "ogImage": "assets/rudeep.jpg"
+  },
+  "schema": {
+    "name": "Rudeep Ramesh M V",
+    "alternateName": "Rudeep Ramesh",
+    "jobTitle": "Motion Designer",
+    "worksFor": "Eaton Business School",
+    "locality": "Kannur",
+    "region": "Kerala",
+    "country": "IN",
+    "email": "rudeep.ramesh0007@gmail.com",
+    "description": "Rudeep Ramesh M V is a motion designer and video producer at Eaton Business School in Coimbatore and founder of the creative collective RudeSync, based in Kannur, Kerala, India.",
+    "knowsAbout": ["Motion Design", "Video Production", "Direction", "After Effects", "Cinematography", "Color Grading", "2D & 3D Animation", "Generative AI Video"],
+    "sameAs": [
+      "https://linkedin.com/in/rudeep-ramesh",
+      "https://www.instagram.com/REPLACE_WITH_YOUR_INSTAGRAM",
+      "https://www.youtube.com/@REPLACE_WITH_YOUR_YOUTUBE"
+    ]
+  },
+  "theme": {
+    "accent": "#D43A56",
+    "filmGrain": true
+  },
+  "nav": {
+    "name": "RUDEEP RAMESH",
+    "suffix": "/ MOTION"
+  },
+  "hero": {
+    "role": "Motion Designer \u00a0//\u00a0 Video Producer",
+    "firstName": "Rudeep",
+    "lastName": "Ramesh",
+    "tagline": "4+ years across the full production pipeline — direction, camera, lighting, editing and motion graphics. Cinematic content for education, retail, manufacturing and corporate brands."
+  },
+  "marquee": ["Direction", "Motion Graphics", "Color Grading", "Cinematography", "2D & 3D Animation", "Ad Films", "Generative AI"],
+  "featured": {
+    "title": "Aantharam",
+    "subtitle": "— Short Film",
+    "byline": "Written, Directed & Edited by Rudeep",
+    "frame": "[ FRAME — SHORT FILM ]",
+    "badgeLeft": "FT",
+    "badgeRight": "● DIR. BY RUDEEP",
+    "href": "https://drive.google.com/file/d/1SPVzYKEV6K_73TZ3yJwvo8RkqV88ZFt9/view?usp=drive_link",
+    "thumb": "assets/thumbs/aantharam.jpg"
+  },
+  "films": [
+    { "num": "01", "title": "EBS Testimonial Film", "tag": "Eaton Business School · Testimonial", "frame": "[ FRAME — TESTIMONIAL ]", "badge": "● 4K", "href": "https://drive.google.com/file/d/1IWb3YgnqElIeRGACXGeNX-OJd8vvcvNZ/view?usp=sharing", "thumb": "assets/thumbs/ebs-testimonial.jpg" },
+    { "num": "02", "title": "ABC Group Ad Film", "tag": "Ad Film · Direction", "frame": "[ FRAME — AD FILM ]", "badge": "● 4K", "href": "https://drive.google.com/file/d/1bT-A85FtOlTrS8eH36wlsfkqOhvQSLMk/view?usp=sharing", "thumb": "assets/thumbs/abc-group-ad.jpg" },
+    { "num": "03", "title": "ABC Group Vishu Ad", "tag": "Ad Film · Festival Campaign", "frame": "[ FRAME — AD FILM ]", "badge": "▶ YOUTUBE", "href": "https://youtu.be/HabExKb_Mv8", "thumb": "assets/thumbs/abc-vishu.jpg" },
+    { "num": "04", "title": "ABC Experia Ad", "tag": "Ad Film · Brand", "frame": "[ FRAME — AD FILM ]", "badge": "▶ YOUTUBE", "href": "https://youtu.be/PyQi7QxBn3E", "thumb": "assets/thumbs/abc-experia.jpg" },
+    { "num": "05", "title": "Brand Launch Video", "tag": "Brand Film · Motion", "frame": "[ FRAME — BRAND FILM ]", "badge": "● 4K", "href": "https://drive.google.com/file/d/1R93UqY4QO4Lsm7JpDIn1MDOAJjTijh01/view?usp=drive_link", "thumb": "assets/thumbs/brand-launch.jpg" },
+    { "num": "06", "title": "Game Trailer", "tag": "Trailer · Motion Graphics", "frame": "[ FRAME — TRAILER ]", "badge": "● 4K", "href": "https://drive.google.com/file/d/1ii-_qBJQja_SOZfBm2YP6DssDxOjJETw/view?usp=sharing", "thumb": "assets/thumbs/game-trailer.jpg" },
+    { "num": "07", "title": "Explainer Video", "tag": "Explainer · 2D Animation", "frame": "[ FRAME — EXPLAINER ]", "badge": "● 4K", "href": "https://drive.google.com/file/d/1R8PgfsQvLo_vlUkRY9sdSZUH3HW1r4kP/view?usp=drive_link", "thumb": "assets/thumbs/explainer.jpg" },
+    { "num": "08", "title": "Logo Rebranding Motion", "tag": "Branding · Motion Graphics", "frame": "[ FRAME — BRANDING ]", "badge": "▶ YOUTUBE", "href": "https://youtu.be/0DSHgHFbam4", "thumb": "https://img.youtube.com/vi/0DSHgHFbam4/hqdefault.jpg" },
+    { "num": "09", "title": "Brand Testimonial", "tag": "Testimonial · Edit", "frame": "[ FRAME — TESTIMONIAL ]", "badge": "▶ YOUTUBE", "href": "https://youtu.be/jxB1BoRgHLo", "thumb": "https://img.youtube.com/vi/jxB1BoRgHLo/hqdefault.jpg" }
+  ],
+  "reels": [
+    { "num": "01", "title": "Scripted Reel", "tag": "Scripted · Direction", "frame": "[ SCRIPTED REEL ]", "highlight": true, "href": "https://www.instagram.com/reel/C4PlAPEPxE1/", "thumb": "assets/thumbs/scripted-featured.jpg" },
+    { "num": "02", "title": "Interview Shorts", "tag": "Interview · Edit", "frame": "[ INTERVIEW ]", "highlight": false, "href": "https://www.instagram.com/reel/DFKFIdfMtYr/", "thumb": "assets/thumbs/interview.jpg" },
+    { "num": "03", "title": "Scripted Reel", "tag": "Scripted · Direction", "frame": "[ SCRIPTED REEL ]", "highlight": false, "href": "https://www.instagram.com/reel/DKBdHUhOtxy/", "thumb": "assets/thumbs/scripted-2.jpg" },
+    { "num": "04", "title": "Scripted Ad Reel", "tag": "Scripted · Ad", "frame": "[ SCRIPTED AD ]", "highlight": false, "href": "https://www.instagram.com/reel/DLSS3kOxoX7/", "thumb": "assets/thumbs/scripted-ad-1.jpg" },
+    { "num": "05", "title": "Scripted Ad Reel", "tag": "Scripted · Ad", "frame": "[ SCRIPTED AD ]", "highlight": false, "href": "https://www.instagram.com/reel/DKUFmFptUTt/", "thumb": "assets/thumbs/scripted-ad-2.jpg" },
+    { "num": "06", "title": "Home Tour", "tag": "Real Estate · Tour", "frame": "[ HOME TOUR ]", "highlight": false, "href": "https://www.instagram.com/reel/DPELK7rE9ry/", "thumb": "assets/thumbs/home-tour-1.jpg" },
+    { "num": "07", "title": "Info Ad Reel", "tag": "Informative · Ad", "frame": "[ INFO AD ]", "highlight": false, "href": "https://www.instagram.com/reel/DHa16H2J1XL/", "thumb": "assets/thumbs/info-ad.jpg" },
+    { "num": "08", "title": "Scripted Ad Reel", "tag": "Scripted · Ad", "frame": "[ SCRIPTED AD ]", "highlight": false, "href": "https://www.instagram.com/reel/C9XH6s5CaLz/", "thumb": "assets/thumbs/scripted-ad-3.jpg" },
+    { "num": "09", "title": "Product Tour", "tag": "Product · Tour", "frame": "[ PRODUCT TOUR ]", "highlight": false, "href": "https://www.instagram.com/reel/C2cNqHnLVro/", "thumb": "assets/thumbs/product-tour.jpg" },
+    { "num": "10", "title": "Home Tour", "tag": "Real Estate · Tour", "frame": "[ HOME TOUR ]", "highlight": false, "href": "https://www.instagram.com/reel/DN216d_5jE5/", "thumb": "assets/thumbs/home-tour-2.jpg" },
+    { "num": "11", "title": "Product Motion", "tag": "Product · Motion", "frame": "[ PRODUCT MOTION ]", "highlight": false, "href": "https://www.instagram.com/reel/DSAKZ3bEm2z/", "thumb": "assets/thumbs/product-motion-1.jpg" },
+    { "num": "12", "title": "Product Motion", "tag": "Product · Motion", "frame": "[ PRODUCT MOTION ]", "highlight": false, "href": "https://www.instagram.com/reel/DUI0lP1kUKH/", "thumb": "assets/thumbs/product-motion-2.jpg" }
+  ],
+  "about": {
+    "portrait": "assets/rudeep.jpg",
+    "captionName": "Rudeep Ramesh",
+    "captionLocation": " / Kannur",
+    "bio": "I'm a motion designer and video producer with <span style=\"color:var(--ac);\">4+ years</span> across the full production pipeline — from pre-production and direction to camera, lighting, editing and <span style=\"color:var(--ac);\">motion graphics</span>. I build cinematic content for education, retail, manufacturing and corporate brands.",
+    "basedIn": "Kannur, Kerala, India",
+    "languages": "English · Malayalam · Hindi · Tamil",
+    "also": "Scriptwriting · Direction · Acting · Music",
+    "stats": [
+      { "value": "150+", "label": "Pieces produced" },
+      { "value": "+30%", "label": "Engagement lift" }
+    ]
+  },
+  "experience": [
+    { "period": "FEB 2026 — NOW", "location": "Coimbatore", "role": "Motion Designer", "org": "— Eaton Business School", "desc": "Testimonial films, promotional films and motion-graphics packages for an international DBA/EMBA audience. Cinematic campaign content built with Google Veo and After Effects, plus reusable brand-aligned motion systems.", "linkLabel": "FEATURED ON EBS TEAM PAGE", "linkHref": "https://ebsedu.org/in/marketing-operations/" },
+    { "period": "AUG 2023 — JAN 2026", "location": "Kannur", "role": "Motion Designer", "org": "— ABC Group India", "desc": "Directed ad films and produced 150+ short-form pieces end-to-end across education, food, retail and manufacturing — +30% engagement, +25% brand recognition. Taught video production and editing at ABcademy.", "linkLabel": "", "linkHref": "" },
+    { "period": "2022 — 2023", "location": "Kochi", "role": "Video Editor", "org": "— TALROP · Steyp", "desc": "Produced 100+ social-media videos and educational content for one of Kerala's leading EdTech companies.", "linkLabel": "", "linkHref": "" },
+    { "period": "2020 — 2021", "location": "Kannur", "role": "Video Editor", "org": "— InfoM News", "desc": "Edited social-media news videos across multiple platforms under tight daily deadlines.", "linkLabel": "", "linkHref": "" },
+    { "period": "2019 — 2021", "location": "Kannur", "role": "Creative Director / Editor", "org": "— Mirror One Productions", "desc": "Directed creative production from concept development through final delivery, aligning creative vision with client and business goals.", "linkLabel": "", "linkHref": "" }
+  ],
+  "skills": {
+    "topline": ["Premiere Pro", "After Effects", "Photoshop", "Illustrator", "DaVinci Resolve"],
+    "groups": [
+      { "title": "Video Production", "items": ["Pre-production", "Direction", "Camera Operation", "Lighting", "Storyboarding", "Sound Design"] },
+      { "title": "Motion & Design", "items": ["Motion Graphics", "2D & 3D Animation", "Graphic Design", "Logo Design", "Title Sequences"] },
+      { "title": "Editing & Color", "items": ["Color Grading", "Color Correction", "Photo Retouching", "Photo Manipulation"] }
+    ],
+    "aiTitle": "Generative AI",
+    "aiTools": ["Google Veo", "Runway", "Kling", "Luma Dream Machine", "Midjourney", "Adobe Firefly", "ElevenLabs", "Artlist"]
+  },
+  "contact": {
+    "headingLine1": "Let's make",
+    "headingLine2": "something",
+    "headingAccent": "cinematic.",
+    "links": [
+      { "label": "Email", "value": "rudeep.ramesh0007@gmail.com", "href": "mailto:rudeep.ramesh0007@gmail.com" },
+      { "label": "Phone", "value": "+91 95444 50264", "href": "tel:+919544450264" },
+      { "label": "LinkedIn", "value": "in/rudeep-ramesh", "href": "https://linkedin.com/in/rudeep-ramesh" }
+    ]
+  },
+  "footer": {
+    "copyright": "© 2026 Rudeep Ramesh M V",
+    "location": "Based in Kannur, Kerala — Available Worldwide"
+  }
+}
