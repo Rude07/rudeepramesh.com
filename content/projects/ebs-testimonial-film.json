@@ -1,0 +1,17 @@
+{
+  "title": "EBS Testimonial Film",
+  "client": "Eaton Business School",
+  "role": "Motion Designer & Editor",
+  "year": "2026",
+  "category": "Testimonial Film",
+  "featured": true,
+  "order": 1,
+  "thumb": "assets/thumbs/ebs-testimonial.jpg",
+  "videoUrl": "https://drive.google.com/file/d/1IWb3YgnqElIeRGACXGeNX-OJd8vvcvNZ/view?usp=sharing",
+  "summary": "A cinematic testimonial film for Eaton Business School's international DBA and EMBA audience.",
+  "overview": "A polished testimonial film produced for Eaton Business School, built to speak to an international executive-education audience. The piece pairs authentic student voices with a restrained, premium visual language that reflects the school's brand.",
+  "challenge": "Testimonial content often feels flat and corporate. The goal was to keep the interviews genuine while elevating the production so it felt closer to a brand film than a talking-head video.",
+  "approach": "Careful framing, controlled lighting and considered gaze direction gave the interviews a cinematic feel. Motion-graphics packages and brand-aligned typography were built in After Effects to reinforce the school's identity, with colour grading tuned to the brand palette.",
+  "results": "A reusable, brand-consistent testimonial format that the school can extend across future campaigns.",
+  "tools": ["After Effects", "Premiere Pro", "DaVinci Resolve"]
+}
