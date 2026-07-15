@@ -178,31 +178,31 @@
     },
     {
       "name": "TALROP",
-      "logo": "/images/uploads/talrop.com_logo.jpg"
+      "logo": "/images/uploads/frzp3u899ypauirpz3jqltxrvllyyb8fxpf0lqpv.png"
     },
     {
       "name": "Steyp",
-      "logo": "/images/uploads/steyp-logo-4x.png"
+      "logo": "/images/uploads/steyp.png"
     },
     {
-      "name": "InfoM News",
-      "logo": ""
+      "name": "ABC BUILDWARE",
+      "logo": "/images/uploads/buildware.png"
     },
     {
       "name": "Mirror One",
-      "logo": "/images/uploads/logodp1.png"
+      "logo": "/images/uploads/m1logo.png"
     },
     {
       "name": "Bebeto",
-      "logo": "/images/uploads/bebetol2-png.png"
+      "logo": "/images/uploads/bebeto.png"
     },
     {
       "name": "Apex ecole de management",
-      "logo": "/images/uploads/apex-logo-with-e.webp"
+      "logo": "/images/uploads/apex.png"
     },
     {
       "name": "Abcademy",
-      "logo": "/images/uploads/abcademy-logo-confirmed-02.png"
+      "logo": "/images/uploads/abcademy.png"
     },
     {
       "name": "M3DB Cafe",
@@ -210,7 +210,7 @@
     },
     {
       "name": "M3DB",
-      "logo": "/images/uploads/m3db_logopng.png"
+      "logo": "/images/uploads/m3db.png"
     },
     {
       "name": "Arwa",
@@ -222,11 +222,15 @@
     },
     {
       "name": "Oraak",
-      "logo": "/images/uploads/logo-white.svg"
+      "logo": "/images/uploads/oraack-logo.png"
     },
     {
       "name": "Majlis",
-      "logo": "/images/uploads/majls.png"
+      "logo": "/images/uploads/majlis.png"
+    },
+    {
+      "name": "ABC Experia",
+      "logo": "/images/uploads/experia.png"
     }
   ],
   "about": {
@@ -249,8 +253,8 @@
     ]
   },
   "featured": {
-    "title": "Aantharam",
-    "subtitle": "— Short Film",
+    "title": "Aantharam ",
+    "subtitle": "Trapped in a fragile reality, Jagan searches for himself in a world where his greatest loss never occurred, but the truth threatens to shatter his refuge. Can he find his way back to reality or will he lose himself forever?.",
     "byline": "Written, Directed & Edited by Rudeep",
     "frame": "[ FRAME — SHORT FILM ]",
     "badgeLeft": "FT",
