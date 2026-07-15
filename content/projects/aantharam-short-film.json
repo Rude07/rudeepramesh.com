@@ -1,17 +1,21 @@
 {
-  "title": "Aantharam",
+  "challenge": "Deliver a complete narrative short as a near-solo effort, holding a consistent tone and visual language across every stage of production.",
+  "summary": "An independent short film written, directed and edited by Rudeep Ramesh.",
+  "approach": "Writing, directing and editing were handled personally, allowing a single unified vision to carry from the page through to the edit, with careful attention to pacing and mood.",
   "client": "Independent",
-  "role": "Writer, Director & Editor",
-  "year": "2023",
-  "category": "Short Film",
   "featured": true,
   "order": 0,
+  "videoUrl": "https://www.youtube.com/watch?v=vn529RdmOZc",
+  "role": "Writer, Director & Editor",
   "thumb": "assets/thumbs/aantharam.jpg",
-  "videoUrl": "https://drive.google.com/file/d/1SPVzYKEV6K_73TZ3yJwvo8RkqV88ZFt9/view?usp=drive_link",
-  "summary": "An independent short film written, directed and edited by Rudeep Ramesh.",
-  "overview": "Aantharam is an independent short film written, directed and edited by Rudeep Ramesh — a personal project exploring narrative filmmaking end-to-end, from script to final cut.",
-  "challenge": "Deliver a complete narrative short as a near-solo effort, holding a consistent tone and visual language across every stage of production.",
-  "approach": "Writing, directing and editing were handled personally, allowing a single unified vision to carry from the page through to the edit, with careful attention to pacing and mood.",
   "results": "A self-contained short film that demonstrates directorial and storytelling range beyond commercial work.",
-  "tools": ["Premiere Pro", "DaVinci Resolve", "Direction"]
+  "title": "Aantharam",
+  "overview": "Trapped in a fragile reality, Jagan searches for himself in a world where his greatest loss never occurred, but the truth threatens to shatter his refuge. Can he find his way back to reality or will he lose himself forever?.\n— a project exploring narrative filmmaking end-to-end, from script to final cut.",
+  "tools": [
+    "Premiere Pro",
+    "DaVinci Resolve",
+    "Direction"
+  ],
+  "year": "2023",
+  "category": "Short Film"
 }
