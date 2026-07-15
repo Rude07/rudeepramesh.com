@@ -1,17 +1,23 @@
 {
-  "title": "EBS Testimonial Film",
-  "client": "Eaton Business School",
-  "role": "Motion Designer & Editor",
-  "year": "2026",
-  "category": "Testimonial Film",
+  "challenge": "The shoot hit an unexpected crew block on the day: the department heads and most of the team were pulled into a company meeting, leaving only me, my cameraman and two unskilled hands to pull off a launch film on a fixed deadline. Every role that would normally be spread across a crew — direction, costume, lighting, production control, location management — landed on one person, with no room to push the date.",
+  "summary": "A launch film for ABC Experia, North Malabar's largest premium experience centre — directed and edited by Rudeep Ramesh.",
+  "approach": "I took on every department myself — directing and editing while also handling costume, lighting, production control and location management — and used the cameraman and the two available hands where they could contribute most. Prioritising ruthlessly, I focused the limited manpower on getting clean, complete coverage of the space and its brand displays, keeping the shoot organised enough that nothing essential was missed despite the skeleton crew.",
+  "client": "ABC Group India (ABC Experia)",
   "featured": true,
   "order": 1,
-  "thumb": "assets/thumbs/ebs-testimonial.jpg",
-  "videoUrl": "https://drive.google.com/file/d/1IWb3YgnqElIeRGACXGeNX-OJd8vvcvNZ/view?usp=sharing",
-  "summary": "A cinematic testimonial film for Eaton Business School's international DBA and EMBA audience.",
-  "overview": "A polished testimonial film produced for Eaton Business School, built to speak to an international executive-education audience. The piece pairs authentic student voices with a restrained, premium visual language that reflects the school's brand.",
-  "challenge": "Testimonial content often feels flat and corporate. The goal was to keep the interviews genuine while elevating the production so it felt closer to a brand film than a talking-head video.",
-  "approach": "Careful framing, controlled lighting and considered gaze direction gave the interviews a cinematic feel. Motion-graphics packages and brand-aligned typography were built in After Effects to reinforce the school's identity, with colour grading tuned to the brand palette.",
-  "results": "A reusable, brand-consistent testimonial format that the school can extend across future campaigns.",
-  "tools": ["After Effects", "Premiere Pro", "DaVinci Resolve"]
+  "videoUrl": "https://youtu.be/PyQi7QxBn3E?si=Ht89DsADCCf7QGvk",
+  "role": "Director, Editor & Production (full crew)",
+  "thumb": "/images/uploads/abc-experia.jpg",
+  "results": "The film was completed on schedule and delivered in time for the showroom launch — fully covered and polished, with every planned shot captured despite the crew shortage. A proof that tight problem-solving and hands-on control can carry a production through when the plan falls apart.",
+  "title": " ABC Experia Ad",
+  "overview": "A launch ad for ABC Experia — North Malabar's largest experience centre for premier brands and world-class products. The film showcases the showroom's exquisite collections and dedicated display centres for Jaquar, Simpolo, Artize, Nexion and Essco, capturing the scale and premium feel of the space ahead of its opening.",
+  "tools": [
+    "After Effects",
+    "Premiere Pro",
+    "DaVinci Resolve",
+    "Artlist",
+    ""
+  ],
+  "year": "2025",
+  "category": "Ad Film · Brand Launch"
 }
