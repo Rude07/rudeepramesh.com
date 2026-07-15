@@ -231,6 +231,18 @@
     {
       "name": "ABC Experia",
       "logo": "/images/uploads/experia.png"
+    },
+    {
+      "name": "Duroflex",
+      "logo": "/images/uploads/duroflex.png"
+    },
+    {
+      "name": "Vellikkeel waves",
+      "logo": "/images/uploads/vw-logo.png"
+    },
+    {
+      "name": "Fitelo",
+      "logo": "/images/uploads/fitelo.png"
     }
   ],
   "about": {
