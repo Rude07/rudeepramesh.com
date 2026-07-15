@@ -289,17 +289,17 @@
   "films": [
     {
       "num": "01",
-      "title": "EBS Testimonial Film",
-      "tag": "Eaton Business School · Testimonial",
+      "title": "Student Testimonial Film",
+      "tag": "Eaton Business School · 2026",
       "frame": "[ FRAME — TESTIMONIAL ]",
       "badge": "● 4K",
-      "href": "https://drive.google.com/file/d/1IWb3YgnqElIeRGACXGeNX-OJd8vvcvNZ/view?usp=sharing",
+      "href": "https://youtu.be/xifF5decRJ8?si=BTZ-Pe11lxqhB8GV",
       "thumb": "assets/thumbs/ebs-testimonial.jpg"
     },
     {
       "num": "02",
-      "title": "ABC Group Ad Film",
-      "tag": "Ad Film · Direction",
+      "title": "Eid Festival Ad ",
+      "tag": "ABC Group India · Director & Editor",
       "frame": "[ FRAME — AD FILM ]",
       "badge": "● 4K",
       "href": "https://drive.google.com/file/d/1bT-A85FtOlTrS8eH36wlsfkqOhvQSLMk/view?usp=sharing",
@@ -307,26 +307,26 @@
     },
     {
       "num": "03",
-      "title": "ABC Group Vishu Ad",
-      "tag": "Ad Film · Festival Campaign",
+      "title": "Vishu Festival Ad",
+      "tag": "ABC GROUP INDIA · Director, Editor & Actor",
       "frame": "[ FRAME — AD FILM ]",
-      "badge": "▶ YOUTUBE",
+      "badge": "4k",
       "href": "https://youtu.be/HabExKb_Mv8",
       "thumb": "assets/thumbs/abc-vishu.jpg"
     },
     {
       "num": "04",
-      "title": "ABC Experia Ad",
-      "tag": "Ad Film · Brand",
+      "title": "Brand Launch Ad",
+      "tag": "ABC Experia · Director & Editor",
       "frame": "[ FRAME — AD FILM ]",
-      "badge": "▶ YOUTUBE",
+      "badge": "4k",
       "href": "https://youtu.be/PyQi7QxBn3E",
       "thumb": "assets/thumbs/abc-experia.jpg"
     },
     {
       "num": "05",
-      "title": "Brand Launch Video",
-      "tag": "Brand Film · Motion",
+      "title": "Brand Launch ",
+      "tag": "Oraak· Motion designer",
       "frame": "[ FRAME — BRAND FILM ]",
       "badge": "● 4K",
       "href": "https://drive.google.com/file/d/1R93UqY4QO4Lsm7JpDIn1MDOAJjTijh01/view?usp=drive_link",
@@ -335,7 +335,7 @@
     {
       "num": "06",
       "title": "Game Trailer",
-      "tag": "Trailer · Motion Graphics",
+      "tag": "Garena Freefire · Motion Graphics",
       "frame": "[ FRAME — TRAILER ]",
       "badge": "● 4K",
       "href": "https://drive.google.com/file/d/1ii-_qBJQja_SOZfBm2YP6DssDxOjJETw/view?usp=sharing",
@@ -344,7 +344,7 @@
     {
       "num": "07",
       "title": "Explainer Video",
-      "tag": "Explainer · 2D Animation",
+      "tag": "Ankur Warikoo· Motion Graphics",
       "frame": "[ FRAME — EXPLAINER ]",
       "badge": "● 4K",
       "href": "https://drive.google.com/file/d/1R8PgfsQvLo_vlUkRY9sdSZUH3HW1r4kP/view?usp=drive_link",
@@ -352,19 +352,19 @@
     },
     {
       "num": "08",
-      "title": "Logo Rebranding Motion",
-      "tag": "Branding · Motion Graphics",
+      "title": "Logo Rebranding",
+      "tag": "abcademy · Motion Graphics",
       "frame": "[ FRAME — BRANDING ]",
-      "badge": "▶ YOUTUBE",
+      "badge": "HD",
       "href": "https://youtu.be/0DSHgHFbam4",
       "thumb": "https://img.youtube.com/vi/0DSHgHFbam4/hqdefault.jpg"
     },
     {
       "num": "09",
-      "title": "Brand Testimonial",
-      "tag": "Testimonial · Edit",
+      "title": "Podcast",
+      "tag": "abcademy · Editor",
       "frame": "[ FRAME — TESTIMONIAL ]",
-      "badge": "▶ YOUTUBE",
+      "badge": "HD",
       "href": "https://youtu.be/jxB1BoRgHLo",
       "thumb": "https://img.youtube.com/vi/jxB1BoRgHLo/hqdefault.jpg"
     }
