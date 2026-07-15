@@ -243,6 +243,14 @@
     {
       "name": "Fitelo",
       "logo": "/images/uploads/fitelo.png"
+    },
+    {
+      "name": "Granitogres",
+      "logo": "/images/uploads/gg-logo.png"
+    },
+    {
+      "name": "Ceramic Factory Outlet",
+      "logo": "/images/uploads/cfo-logo.png"
     }
   ],
   "about": {
