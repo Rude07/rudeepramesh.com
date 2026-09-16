@@ -25,8 +25,11 @@ export default async (req) => {
   }
 
   const msg = update.message;
-  if (!msg?.text) return ok();
+  if (!msg) return ok();
   if (String(msg.chat.id) !== String(OWNER_CHAT_ID)) return ok();
+
+  const hasPhoto = Array.isArray(msg.photo) && msg.photo.length > 0;
+  if (!msg.text && !hasPhoto) return ok();
 
   if (!msg.reply_to_message) {
     await telegram('sendMessage', {
@@ -48,11 +51,23 @@ export default async (req) => {
     return ok();
   }
 
-  await appendMessage(sessionId, {
-    from: 'owner',
-    text: msg.text.slice(0, 2000),
-    ts: Date.now(),
-  });
+  if (hasPhoto) {
+    // Telegram sends several sizes; the last is the largest.
+    const largest = msg.photo[msg.photo.length - 1];
+    await appendMessage(sessionId, {
+      from: 'owner',
+      kind: 'image',
+      fileId: largest.file_id,
+      text: (msg.caption || '').slice(0, 500),
+      ts: Date.now(),
+    });
+  } else {
+    await appendMessage(sessionId, {
+      from: 'owner',
+      text: msg.text.slice(0, 2000),
+      ts: Date.now(),
+    });
+  }
 
   // Lets your reply be replied to as well, so a thread stays continuous.
   await store().set(`tg:${msg.message_id}`, sessionId);
