@@ -13,14 +13,7 @@
 
   // sessionStorage, not localStorage: a refresh keeps the conversation alive
   // so your replies still land, but closing the tab wipes it for good.
-  const sessionId = (() => {
-    let id = sessionStorage.getItem(KEY);
-    if (!/^[a-z0-9]{16}$/.test(id || '')) {
-      id = newId();
-      sessionStorage.setItem(KEY, id);
-    }
-    return id;
-  })();
+  const sessionId = newId();
 
   const host = document.createElement('div');
   host.setAttribute('data-chat-widget', '');
@@ -208,7 +201,6 @@
     panel.setAttribute('data-open', '');
     launcher.setAttribute('aria-expanded', 'true');
     launcher.setAttribute('aria-label', 'Close chat');
-    sessionStorage.setItem(OPEN_KEY, '1');
     input.focus();
     poll();
   }
@@ -217,7 +209,6 @@
     panel.removeAttribute('data-open');
     launcher.setAttribute('aria-expanded', 'false');
     launcher.setAttribute('aria-label', 'Open chat');
-    sessionStorage.removeItem(OPEN_KEY);
     stopPolling();
     launcher.focus();
   }
@@ -275,6 +266,3 @@
     if (document.hidden) stopPolling();
     else poll();
   });
-
-  if (sessionStorage.getItem(OPEN_KEY)) open();
-})();
