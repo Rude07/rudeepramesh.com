@@ -30,7 +30,8 @@
         --hairline: rgba(0, 0, 0, 0.18);
         --muted: rgba(0, 0, 0, 0.5);
         all: initial;
-        font-family: inherit;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter,
+          Helvetica, Arial, sans-serif;
       }
       @media (prefers-color-scheme: dark) {
         :host {
