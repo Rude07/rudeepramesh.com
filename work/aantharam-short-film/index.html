@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aantharam — Short Film | Rudeep Ramesh M V</title>
-<meta name="description" content="An independent short film written, directed and edited by Rudeep Ramesh.">
+<meta name="description" content="A dreamlike short film following Jagan through a reality where his greatest loss never happened — written, directed and edited by Rudeep Ramesh.">
 <link rel="canonical" href="https://rudeepramesh.com/work/aantharam-short-film/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Aantharam — Rudeep Ramesh M V">
-<meta property="og:description" content="An independent short film written, directed and edited by Rudeep Ramesh.">
+<meta property="og:description" content="A dreamlike short film following Jagan through a reality where his greatest loss never happened — written, directed and edited by Rudeep Ramesh.">
 <meta property="og:url" content="https://rudeepramesh.com/work/aantharam-short-film/">
-<meta property="og:image" content="https://rudeepramesh.com/assets/thumbs/aantharam.jpg">
+<meta property="og:image" content="https://rudeepramesh.com/images/uploads/aantharam-thumbnail-01-1-.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 {
@@ -21,9 +21,9 @@
       "@id": "https://rudeepramesh.com/work/aantharam-short-film/#work",
       "name": "Aantharam",
       "url": "https://rudeepramesh.com/work/aantharam-short-film/",
-      "description": "An independent short film written, directed and edited by Rudeep Ramesh.",
+      "description": "A dreamlike short film following Jagan through a reality where his greatest loss never happened \u2014 written, directed and edited by Rudeep Ramesh.",
       "genre": "Short Film",
-      "image": "https://rudeepramesh.com/assets/thumbs/aantharam.jpg",
+      "image": "https://rudeepramesh.com/images/uploads/aantharam-thumbnail-01-1-.jpg",
       "creator": {
         "@type": "Person",
         "@id": "https://rudeepramesh.com/#person",
@@ -39,11 +39,11 @@
     {
       "@type": "VideoObject",
       "name": "Aantharam",
-      "description": "An independent short film written, directed and edited by Rudeep Ramesh.",
-      "thumbnailUrl": "https://rudeepramesh.com/assets/thumbs/aantharam.jpg",
+      "description": "A dreamlike short film following Jagan through a reality where his greatest loss never happened \u2014 written, directed and edited by Rudeep Ramesh.",
+      "thumbnailUrl": "https://rudeepramesh.com/images/uploads/aantharam-thumbnail-01-1-.jpg",
       "uploadDate": "2023-01-01",
-      "contentUrl": "https://drive.google.com/file/d/1SPVzYKEV6K_73TZ3yJwvo8RkqV88ZFt9/view?usp=drive_link",
-      "embedUrl": "https://drive.google.com/file/d/1SPVzYKEV6K_73TZ3yJwvo8RkqV88ZFt9/view?usp=drive_link"
+      "contentUrl": "https://www.youtube.com/watch?v=vn529RdmOZc",
+      "embedUrl": "https://www.youtube.com/watch?v=vn529RdmOZc"
     },
     {
       "@type": "BreadcrumbList",
@@ -74,83 +74,183 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:#0B0C0E;color:#F4F6F8;font-family:'Archivo',system-ui,sans-serif;line-height:1.6;--ac:#D43A56}
+html{scroll-padding-top:88px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+:root{--ac:#242de8;--ac-ink:#5b81fe}
+body{background:#0B0C0E;color:#F4F6F8;font-family:'Archivo',system-ui,sans-serif;line-height:1.6}
+::selection{background:var(--ac);color:#fff}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1040px;margin:0 auto;padding:0 clamp(20px,6vw,80px)}
-header{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;
- padding:18px clamp(20px,5vw,64px);background:linear-gradient(180deg,rgba(11,12,14,.9),rgba(11,12,14,.6));
- backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
-.brand{font-weight:800;font-size:15px;letter-spacing:-.01em}
-.brand span{font-family:'Space Mono',monospace;color:var(--ac);font-size:12px;margin-left:8px;letter-spacing:.12em}
-nav a{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.16em;color:#9AA1AA;margin-left:clamp(14px,2.5vw,32px)}
-nav a:hover{color:var(--ac)}
-.crumbs{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;color:#6B7280;
- text-transform:uppercase;padding:clamp(28px,5vh,56px) 0 0}
-.crumbs a:hover{color:var(--ac)}
+main.wrap{padding-top:clamp(104px,15vh,150px)}
+
+/* atmosphere: grain animates on desktop pointers only, static on touch */
+#grain{position:fixed;inset:-20%;z-index:60;pointer-events:none;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+@keyframes filmgrain{0%{transform:translate(0,0);}10%{transform:translate(-2%,-3%);}20%{transform:translate(-4%,2%);}30%{transform:translate(2%,-4%);}40%{transform:translate(-1%,3%);}50%{transform:translate(-3%,1%);}60%{transform:translate(3%,2%);}70%{transform:translate(-2%,-1%);}80%{transform:translate(1%,-3%);}90%{transform:translate(-3%,2%);}100%{transform:translate(0,0);}}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){#grain{animation:filmgrain .7s steps(2) infinite}}
+.vignette{position:fixed;inset:0;z-index:55;pointer-events:none;
+ background:radial-gradient(ellipse 120% 100% at 50% 50%,transparent 55%,rgba(0,0,0,.6) 100%)}
+
+/* header + primary nav (same as the homepage) */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;
+ align-items:center;gap:16px;padding:18px clamp(20px,5vw,64px);
+ backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+ background:linear-gradient(180deg,rgba(11,12,14,.82),rgba(11,12,14,0));border-bottom:1px solid rgba(255,255,255,.05)}
+.site-name{font-weight:800;letter-spacing:-.01em;font-size:15px;white-space:nowrap}
+.site-nav{display:flex;gap:clamp(16px,2.5vw,40px);font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.18em}
+.site-nav a{color:#9AA1AA;transition:color .2s cubic-bezier(.16,1,.3,1)}
+.site-nav a:hover{color:#F4F6F8}
+.site-nav a.is-active{color:var(--ac-ink)}
+.nav-toggle{display:none}
+.site-nav a:focus-visible,.nav-toggle:focus-visible,.site-name:focus-visible{outline:2px solid var(--ac-ink);outline-offset:4px}
+@media (hover:none){
+  .site-header{backdrop-filter:none;-webkit-backdrop-filter:none;
+    background:linear-gradient(180deg,rgba(11,12,14,.94),rgba(11,12,14,.72))}
+}
+@keyframes navIn{from{opacity:0;transform:translateY(-8px)}}
+@media (max-width:900px){
+  .site-header{padding:12px 20px}
+  .js .nav-toggle{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;
+    padding:0 18px;background:transparent;border:1px solid rgba(255,255,255,.22);border-radius:999px;
+    color:#F4F6F8;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;
+    transition:transform .12s cubic-bezier(.16,1,.3,1)}
+  .js .nav-toggle:active{transform:scale(.97)}
+  .js .site-nav{display:flex;flex-direction:column;gap:0;position:absolute;top:100%;left:0;right:0;
+    padding:4px 20px 16px;background:#0B0C0E;border-bottom:1px solid rgba(255,255,255,.08);font-size:13px;
+    visibility:hidden;opacity:0;transform:translateY(-4px);pointer-events:none;
+    transition:opacity .12s cubic-bezier(.16,1,.3,1),transform .12s cubic-bezier(.16,1,.3,1),visibility 0s linear .12s}
+  .js .site-header.nav-open .site-nav{visibility:visible;opacity:1;transform:none;pointer-events:auto;
+    animation:navIn .18s cubic-bezier(.16,1,.3,1);transition:opacity .18s cubic-bezier(.16,1,.3,1),transform .18s cubic-bezier(.16,1,.3,1),visibility 0s}
+  .js .site-header::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:#0B0C0E;
+    opacity:0;transition:opacity .12s cubic-bezier(.16,1,.3,1)}
+  .js .site-header.nav-open::before{opacity:1;transition-duration:.18s}
+  .js .site-nav a{display:flex;align-items:center;min-height:48px;border-top:1px solid rgba(255,255,255,.06)}
+  html:not(.js) .site-header{flex-wrap:wrap}
+  html:not(.js) .site-nav{flex-wrap:wrap;gap:0 18px}
+  html:not(.js) .site-nav a{display:inline-flex;align-items:center;min-height:44px}
+}
+
+/* buttons (same system as the homepage) */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;
+ border-radius:999px;border:1px solid transparent;cursor:pointer;white-space:nowrap;
+ font:600 15px/1 'Archivo',system-ui,sans-serif;letter-spacing:.01em;
+ transition:background-color .2s cubic-bezier(.16,1,.3,1),border-color .2s cubic-bezier(.16,1,.3,1),color .2s cubic-bezier(.16,1,.3,1),transform .12s cubic-bezier(.16,1,.3,1)}
+.btn svg{width:18px;height:18px;flex:none;fill:currentColor;transition:transform .2s cubic-bezier(.16,1,.3,1)}
+.btn:active{transform:scale(.97)}
+.btn:focus-visible{outline:2px solid var(--ac-ink);outline-offset:4px}
+.btn-primary{background:var(--ac);color:#fff}
+.btn-secondary{background:transparent;border-color:rgba(255,255,255,.22);color:#F4F6F8}
+@media (hover:hover) and (pointer:fine){
+  .btn-primary:hover{background:color-mix(in oklab,var(--ac) 86%,#fff)}
+  .btn-secondary:hover{border-color:#F4F6F8;background:rgba(255,255,255,.06)}
+  .btn:hover svg{transform:translateX(3px)}
+  .btn:hover svg.ext{transform:translate(2px,-2px)}
+}
+
+/* case study */
+.crumbs{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;color:#6B7280;text-transform:uppercase}
+.crumbs a{transition:color .2s cubic-bezier(.16,1,.3,1)}
+.crumbs a:hover{color:var(--ac-ink)}
 h1{font-size:clamp(2.4rem,7vw,5rem);font-weight:900;letter-spacing:-.04em;line-height:.95;
- text-transform:uppercase;margin:14px 0 18px}
-.meta{display:flex;flex-wrap:wrap;gap:10px 28px;font-family:'Space Mono',monospace;font-size:12px;
- letter-spacing:.08em;color:#9AA1AA;text-transform:uppercase;margin-bottom:clamp(30px,5vh,52px)}
-.meta b{color:var(--ac);font-weight:400}
+ text-transform:uppercase;margin:16px 0 22px}
+.meta{display:flex;flex-wrap:wrap;gap:16px 40px;margin-bottom:clamp(30px,5vh,48px)}
+.meta div{display:flex;flex-direction:column;gap:3px}
+.meta dt{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ac-ink)}
+.meta dd{font-size:1rem;color:#E6E9ED}
 .hero-media{position:relative;aspect-ratio:16/9;overflow:hidden;border:1px solid rgba(255,255,255,.08);
- background:#0E1013;margin-bottom:clamp(36px,6vh,64px)}
-.hero-media img{width:100%;height:100%;object-fit:cover}
-.hero-media .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:74px;height:74px;
- border-radius:50%;background:rgba(11,12,14,.55);border:1px solid var(--ac);display:flex;align-items:center;
- justify-content:center;backdrop-filter:blur(6px)}
-.hero-media .play span{width:0;height:0;border-left:16px solid var(--ac);border-top:10px solid transparent;
- border-bottom:10px solid transparent;margin-left:5px}
-.watch{display:inline-flex;align-items:center;gap:10px;background:var(--ac);color:#0B0C0E;font-weight:700;
- padding:14px 26px;border-radius:999px;font-size:14px;margin-bottom:clamp(40px,6vh,64px)}
-section.block{margin-bottom:clamp(34px,5vh,52px)}
-.block h2{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;color:var(--ac);
- text-transform:uppercase;margin-bottom:14px}
-.block p{color:#C2C8CF;font-size:clamp(1rem,1.4vw,1.15rem);margin-bottom:12px;max-width:70ch}
+ background:#0E1013;margin-bottom:24px}
+.hero-media img{width:100%;height:100%;object-fit:cover;display:block}
+.play-disc{position:absolute;left:50%;top:50%;width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;
+ background:var(--ac);display:flex;align-items:center;justify-content:center;
+ transition:background-color .2s cubic-bezier(.16,1,.3,1),transform .12s cubic-bezier(.16,1,.3,1)}
+.play-disc span{width:0;height:0;border-left:17px solid #fff;border-top:11px solid transparent;
+ border-bottom:11px solid transparent;margin-left:5px}
+.play-disc:active{transform:scale(.97)}
+.play-disc:focus-visible{outline:2px solid #fff;outline-offset:4px}
+@media (hover:hover) and (pointer:fine){.play-disc:hover{background:color-mix(in oklab,var(--ac) 86%,#fff)}}
+@media (max-width:560px){.play-disc{width:58px;height:58px;margin:-29px 0 0 -29px}}
+.actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:clamp(40px,6vh,64px)}
 .lede{font-size:clamp(1.25rem,2.4vw,1.9rem);font-weight:600;letter-spacing:-.02em;line-height:1.4;
- color:#F4F6F8;max-width:60ch;margin-bottom:clamp(36px,6vh,60px)}
+ color:#F4F6F8;max-width:60ch;margin-bottom:clamp(40px,6vh,64px)}
+section.block{margin-bottom:clamp(36px,5vh,56px)}
+.block h2{font-size:clamp(1.4rem,2.6vw,2rem);font-weight:800;letter-spacing:-.025em;line-height:1.1;
+ color:#F4F6F8;margin-bottom:14px}
+.block p{color:#C2C8CF;font-size:clamp(1rem,1.4vw,1.15rem);line-height:1.65;margin-bottom:12px;max-width:68ch}
 .tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
 .tools span{border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:8px 16px;
  font-family:'Space Mono',monospace;font-size:12px;color:#C2C8CF}
 .backrow{border-top:1px solid rgba(255,255,255,.1);margin-top:clamp(40px,7vh,72px);
- padding:clamp(30px,5vh,52px) 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;
- font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#9AA1AA}
-.backrow a:hover{color:var(--ac)}
-footer{border-top:1px solid rgba(255,255,255,.07);padding:clamp(30px,5vh,48px) 0;
- font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.14em;color:#6B7280;text-transform:uppercase}
-/* work index grid */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:clamp(24px,4vw,44px);
- padding:clamp(30px,5vh,56px) 0 clamp(60px,10vh,110px)}
-.card{display:block}
-.card .m{position:relative;aspect-ratio:16/9;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:#0E1013}
-.card img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
-.card:hover img{transform:scale(1.05)}
-.card h3{font-size:1.3rem;font-weight:800;letter-spacing:-.02em;margin:14px 0 4px}
+ padding:clamp(30px,5vh,52px) 0 clamp(56px,9vh,96px);display:flex;justify-content:space-between;align-items:center;
+ flex-wrap:wrap;gap:16px}
+.back-link{display:inline-flex;align-items:center;min-height:44px;font-family:'Space Mono',monospace;font-size:12px;
+ letter-spacing:.12em;text-transform:uppercase;color:#9AA1AA;transition:color .2s cubic-bezier(.16,1,.3,1)}
+.back-link:hover{color:var(--ac-ink)}
+.back-link:focus-visible{outline:2px solid var(--ac-ink);outline-offset:4px}
+
+/* footer (same as the homepage) */
+.site-footer{padding:clamp(40px,6vh,64px) clamp(20px,6vw,96px);border-top:1px solid rgba(255,255,255,.07)}
+.site-footer .row{max-width:1340px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;
+ align-items:center;gap:18px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.14em;
+ color:#6B7280;text-transform:uppercase}
+.site-footer .loc{color:#8A9099}
+.btt{flex:none;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+ background:transparent;border:1px solid rgba(255,255,255,.22);color:#F4F6F8;cursor:pointer;
+ transition:border-color .2s cubic-bezier(.16,1,.3,1),background-color .2s cubic-bezier(.16,1,.3,1),transform .12s cubic-bezier(.16,1,.3,1)}
+.btt svg{width:16px;height:16px}
+.btt svg path{fill:currentColor}
+.btt:active{transform:scale(.97)}
+.btt:focus-visible{outline:2px solid var(--ac-ink);outline-offset:4px}
+@media (hover:hover) and (pointer:fine){.btt:hover{border-color:#F4F6F8;background:rgba(255,255,255,.06)}}
+
+/* case-study index */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:clamp(28px,4vw,48px);
+ padding:clamp(34px,5vh,56px) 0 clamp(64px,10vh,112px)}
+.card{display:block;transition:translate .25s cubic-bezier(.16,1,.3,1)}
+.card .m{position:relative;aspect-ratio:16/9;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:#0E1013;
+ transition:border-color .25s cubic-bezier(.16,1,.3,1),transform .18s cubic-bezier(.16,1,.3,1)}
+.card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s cubic-bezier(.16,1,.3,1)}
+.card h2{font-size:1.35rem;font-weight:800;letter-spacing:-.02em;line-height:1.2;margin:16px 0 4px}
 .card p{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;color:#8A9099;text-transform:uppercase}
-.page-head{padding:clamp(50px,10vh,120px) 0 0}
-.page-head .k{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.28em;color:var(--ac);text-transform:uppercase}
+.card:focus-visible{outline:2px solid var(--ac-ink);outline-offset:6px}
+@media (hover:hover) and (pointer:fine){
+  .card:hover{translate:0 -5px}
+  .card:hover .m{border-color:var(--ac)}
+  .card:hover img{transform:scale(1.05)}
+}
+@media (hover:none){.card:active .m{transform:scale(.98)}}
+
+/* reduced motion: no loops, no movement; colour changes stay */
+@media (prefers-reduced-motion:reduce){
+  #grain{animation:none!important}
+  .js .site-nav,.js .site-header.nav-open .site-nav{transform:none;animation:none}
+  .btn,.btn svg,.btt,.play-disc,.card,.card .m,.card img,.js .nav-toggle{transition-property:color,background-color,border-color,opacity}
+  .btn:active,.btt:active,.play-disc:active,.js .nav-toggle:active,.btn:hover svg,.card:active .m,.card:hover img{transform:none!important}
+  .card:hover{translate:none!important}
+}
 </style>
+<script>document.documentElement.classList.add('js')</script>
+<script src="/js/site.js" defer></script>
 </head>
 <body>
-<header><a class="brand" href="/">RUDEEP RAMESH<span>/ MOTION</span></a><nav><a href="/">HOME</a><a href="/work/">WORK</a><a href="/#contact">CONTACT</a></nav></header>
+<div id="grain" aria-hidden="true"></div><div class="vignette" aria-hidden="true"></div>
+<header id="siteHeader" class="site-header"><a href="/" class="site-name">RUDEEP RAMESH</a><button id="navToggle" class="nav-toggle" type="button" aria-expanded="false" aria-controls="siteNav">Menu</button><nav id="siteNav" class="site-nav" aria-label="Primary"><a href="/#work">WORK</a><a href="/work/" class="is-active" aria-current="page">CASE STUDIES</a><a href="/#about">ABOUT</a><a href="/#experience">EXPERIENCE</a><a href="/#contact">CONTACT</a></nav></header>
 <main class="wrap">
-  <div class="crumbs"><a href="/">Home</a> / <a href="/work/">Work</a> / Aantharam</div>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/work/">Case studies</a> / Aantharam</nav>
   <h1>Aantharam</h1>
-  <div class="meta"><div><b>Client</b> &nbsp;Independent</div><div><b>Role</b> &nbsp;Writer, Director &amp; Editor</div><div><b>Year</b> &nbsp;2023</div><div><b>Type</b> &nbsp;Short Film</div></div>
+  <dl class="meta"><div><dt>Client</dt><dd>Independent</dd></div><div><dt>Role</dt><dd>Writer, Director &amp; Editor</dd></div><div><dt>Year</dt><dd>2023</dd></div><div><dt>Type</dt><dd>Short Film</dd></div></dl>
   <div class="hero-media">
-    <img src="/assets/thumbs/aantharam.jpg" alt="Aantharam — Short Film by Rudeep Ramesh M V" width="1280" height="720">
-    <a class="play" href="https://drive.google.com/file/d/1SPVzYKEV6K_73TZ3yJwvo8RkqV88ZFt9/view?usp=drive_link" target="_blank" rel="noopener" aria-label="Play Aantharam"><span></span></a>
+    <img src="/images/uploads/aantharam-thumbnail-01-1-.jpg" alt="Aantharam — Short Film by Rudeep Ramesh M V" width="1280" height="720" fetchpriority="high" decoding="async">
+    <a class="play-disc" href="https://www.youtube.com/watch?v=vn529RdmOZc" target="_blank" rel="noopener" aria-label="Play Aantharam"><span></span></a>
   </div>
-  <a class="watch" href="https://drive.google.com/file/d/1SPVzYKEV6K_73TZ3yJwvo8RkqV88ZFt9/view?usp=drive_link" target="_blank" rel="noopener">Watch the film <span style="font-family:Space Mono,monospace">↗</span></a>
-  <p class="lede">An independent short film written, directed and edited by Rudeep Ramesh.</p>
-  <section class="block"><h2>Overview</h2><p>Aantharam is an independent short film written, directed and edited by Rudeep Ramesh — a personal project exploring narrative filmmaking end-to-end, from script to final cut.</p></section>
-<section class="block"><h2>The Challenge</h2><p>Deliver a complete narrative short as a near-solo effort, holding a consistent tone and visual language across every stage of production.</p></section>
-<section class="block"><h2>Approach</h2><p>Writing, directing and editing were handled personally, allowing a single unified vision to carry from the page through to the edit, with careful attention to pacing and mood.</p></section>
-<section class="block"><h2>Outcome</h2><p>A self-contained short film that demonstrates directorial and storytelling range beyond commercial work.</p></section>
+  <div class="actions"><a class="btn btn-primary" href="https://www.youtube.com/watch?v=vn529RdmOZc" target="_blank" rel="noopener">Watch the film<svg class="ext" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 5h12v12h-2.4V9.1L6.7 19 5 17.3l9.9-9.9H7z"/></svg></a></div>
+  <p class="lede">A dreamlike short film following Jagan through a reality where his greatest loss never happened — written, directed and edited by Rudeep Ramesh.</p>
+  <section class="block"><h2>Overview</h2><p>In a fragile, dreamlike reality, Jagan drifts through a world where his greatest loss never happened — but the truth pressing at the edges threatens to shatter the refuge he&#x27;s built. Can he find his way back, or lose himself in it forever? Aantharam was a chance to explore narrative filmmaking end to end — from script to final cut — shaping a single vision across writing, direction and edit.</p></section>
+<section class="block"><h2>The Challenge</h2><p>Aantharam came with real constraints. The entire film had to be captured in a single day — one shoot permission, no room for reshoots. The budget was tight, the crew deliberately small, and the kit pared down to only the essentials. The cast were first-time screen actors, and with no built sets, every location had to work exactly as found. The challenge was to turn all of that into an advantage: to plan tightly enough that limitation became discipline rather than compromise.</p></section>
+<section class="block"><h2>Approach</h2><p>With no margin for error on a single-day shoot, everything rode on preparation. The film was fully planned in pre-production — shot list, blocking and schedule locked before arriving on location — so the one day could be spent shooting, not deciding. Locations were chosen to work exactly as found, turning real spaces into the film&#x27;s world instead of built sets. With first-time actors, I kept the direction simple and the environment relaxed, rehearsing key beats so performances felt natural on camera. The small crew and minimal kit kept the set nimble and fast to move — fewer moving parts, quicker setups, more takes where they mattered.</p></section>
+<section class="block"><h2>Outcome</h2><p>Aantharam was completed on schedule, proving that a clear vision and disciplined planning matter more than budget or gear.It became my first fully self-directed narrative short.</p></section>
 
-  <section class="block"><h2>Tools</h2><div class="tools"><span>Premiere Pro</span><span>DaVinci Resolve</span><span>Direction</span></div></section>
-  <div class="backrow"><a href="/work/">← All work</a><a href="/#contact">Start a project ↗</a></div>
+  <section class="block"><h2>Tools</h2><div class="tools"><span>Premiere Pro</span><span>DaVinci Resolve</span><span>Audacity</span><span>Aftereffects</span><span>Word</span></div></section>
+  <div class="backrow"><a class="back-link" href="/work/">← All case studies</a><a class="btn btn-secondary" href="/#contact">Get in touch<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 11h12.2l-5.6-5.6L12 4l8 8-8 8-1.4-1.4 5.6-5.6H4z"/></svg></a></div>
 </main>
-<footer><div class="wrap">© 2026 Rudeep Ramesh M V &nbsp;—&nbsp; Based in Kannur, Kerala — Available Worldwide</div></footer>
+<footer class="site-footer"><div class="row"><span>© 2026 Rudeep Ramesh M V</span><span class="loc">Based in Kannur, Kerala — Available Worldwide</span><button class="btt" id="backToTop" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3.5 20 11.5 17.9 13.6 13.5 9.2V20.5h-3V9.2L6.1 13.6 4 11.5z"/></svg></button></div></footer>
 </body>
 </html>

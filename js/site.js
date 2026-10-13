@@ -13,60 +13,53 @@
 
   var $ = function (id) { return document.getElementById(id); };
 
+  function reducedMotion() {
+    return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }
+  function scrollBehavior() { return reducedMotion() ? 'auto' : 'smooth'; }
+
 
   /* ---------- interactions (faithful to the original design) ---------- */
 
-  function hoverCard(c, on) {
-    c.style.transform = on ? 'translateY(-5px)' : 'translateY(0)';
-    var img = c.querySelector('[data-img]');
-    if (img) img.style.transform = (on && img.style.opacity !== '0') ? 'scale(1.06)' : 'scale(1)';
-    var play = c.querySelector('[data-play]');
-    if (play) {
-      play.style.opacity = on ? '1' : '0';
-      play.style.transform = 'translate(-50%,-50%) scale(' + (on ? '1' : '.82') + ')';
-    }
-    var ov = c.querySelector('[data-ov]');
-    if (ov) ov.style.opacity = on ? '1' : '0';
-    var media = c.querySelector('[data-media]');
-    if (media) media.style.borderColor = on ? 'var(--ac)' : 'rgba(255,255,255,.08)';
-  }
-  function hoverRow(r, on) {
-    r.style.paddingLeft = on ? '24px' : '6px';
-    r.style.background = on ? 'rgba(255,255,255,.03)' : 'transparent';
-    var a = r.querySelector('[data-arrow]');
-    if (a) a.style.transform = on ? 'translate(6px,-6px)' : 'none';
-  }
+  /* Video-card and contact-row hovers are pure CSS in index.html (cards also
+     work on touch and keyboard focus; rows move on transform, not padding).
+     Only the portrait needs JS. Under reduced motion it keeps the colour
+     change and skips the zoom. */
   function hoverPortrait(p, on) {
     var img = p.querySelector('[data-portrait]');
     if (!img) return;
     img.style.filter = on ? 'grayscale(0) contrast(1.04) brightness(1)'
                           : 'grayscale(.55) contrast(1.04) brightness(.92)';
-    img.style.transform = on ? 'scale(1.04)' : 'scale(1)';
+    if (!reducedMotion()) img.style.transform = on ? 'scale(1.04)' : 'scale(1)';
+  }
+  function finePointer() {
+    return !!(window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches);
   }
   function bindHover(root) {
-    root.querySelectorAll('[data-hover]').forEach(function (el) {
+    // Taps fire mouseenter on phones; this hover is mouse-only.
+    if (!finePointer()) return;
+    root.querySelectorAll('[data-hover="portrait"]').forEach(function (el) {
       if (el.dataset.hoverBound) return;
       el.dataset.hoverBound = '1';
-      var kind = el.dataset.hover;
-      var fn = kind === 'card' ? hoverCard : kind === 'row' ? hoverRow : hoverPortrait;
-      el.addEventListener('mouseenter', function () { fn(el, true); });
-      el.addEventListener('mouseleave', function () { fn(el, false); });
+      el.addEventListener('mouseenter', function () { hoverPortrait(el, true); });
+      el.addEventListener('mouseleave', function () { hoverPortrait(el, false); });
     });
   }
 
+  /* The hidden/shown states live in index.html CSS (.js [data-reveal] and
+     .is-in); this only adds the class. Reduced motion is handled in CSS. */
   var io = null;
   function setupReveal() {
     var els = document.querySelectorAll('[data-reveal]');
     if (!('IntersectionObserver' in window)) {
-      els.forEach(function (el) { el.style.opacity = '1'; el.style.transform = 'none'; });
+      els.forEach(function (el) { el.classList.add('is-in'); });
       return;
     }
     if (!io) {
       io = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
           if (en.isIntersecting) {
-            en.target.style.opacity = '1';
-            en.target.style.transform = 'none';
+            en.target.classList.add('is-in');
             io.unobserve(en.target);
           }
         });
@@ -171,6 +164,99 @@
     spyLinks.forEach(function (a, i) { a.classList.toggle('is-active', i === activeIdx); });
   }
 
+  /* ---------- logo marquee: pause while off-screen ----------
+     Its two infinite loops otherwise keep the compositor busy for the whole
+     page. CSS pauses .track under .is-offscreen. */
+  function setupMarqueePause() {
+    if (!('IntersectionObserver' in window)) return;
+    var bands = [];
+    var brands = $('brands');
+    if (brands) bands.push(brands);
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        en.target.classList.toggle('is-offscreen', !en.isIntersecting);
+      });
+    }, { rootMargin: '100px 0px' });
+    bands.forEach(function (b) { obs.observe(b); });
+  }
+
+  /* ---------- work section on phones ----------
+     CSS shows the featured film + first 3 under 700px; this button reveals
+     the rest (one-way) and hands focus to the first newly shown film. */
+  function setupFilmsMore() {
+    var grid = $('filmsGrid'), btn = $('filmsMore');
+    if (!grid || !btn) return;
+    var films = grid.querySelectorAll(':scope > a');
+    if (films.length <= 3) { btn.parentElement.remove(); return; }
+    btn.textContent = 'Show all ' + films.length + ' films';
+    btn.setAttribute('aria-expanded', 'false');
+    btn.addEventListener('click', function () {
+      grid.classList.add('is-expanded');
+      btn.parentElement.remove();
+      films[3].focus({ preventScroll: true });
+    });
+  }
+
+  // "3 / 12" beside the Reels label while the strip is swiped (phones only)
+  function setupReelsCount() {
+    var strip = $('reelsGrid'), out = $('reelsCount');
+    if (!strip || !out) return;
+    var cards = strip.querySelectorAll(':scope > a');
+    if (!cards.length) return;
+    var queued = false;
+    function update() {
+      queued = false;
+      var step = cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : 1;
+      var i = Math.round(strip.scrollLeft / (step || 1)) + 1;
+      // at the far end the last card can't snap to the start edge
+      if (strip.scrollLeft + strip.clientWidth >= strip.scrollWidth - 2) i = cards.length;
+      out.textContent = Math.min(Math.max(i, 1), cards.length) + ' / ' + cards.length;
+    }
+    strip.addEventListener('scroll', function () {
+      if (!queued) { queued = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
+  }
+
+  /* ---------- header: height sync + mobile menu ----------
+     The header is one row on desktop and a name + Menu button under 900px,
+     so its height varies. scroll-padding-top follows it, which makes anchor
+     jumps (and scrollIntoView below) land headings just under the header. */
+  function syncHeaderOffset() {
+    var header = $('siteHeader');
+    if (!header) return;
+    document.documentElement.style.scrollPaddingTop = (header.offsetHeight + 16) + 'px';
+  }
+
+  function setupMenu() {
+    var header = $('siteHeader'), btn = $('navToggle'), nav = $('siteNav');
+    if (!header || !btn || !nav) return;
+    function isOpen() { return header.classList.contains('nav-open'); }
+    function setOpen(open) {
+      header.classList.toggle('nav-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? 'Close' : 'Menu';
+    }
+    btn.addEventListener('click', function () { setOpen(!isOpen()); });
+    // following a link closes the panel
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && isOpen()) { setOpen(false); btn.focus(); }
+    });
+    document.addEventListener('click', function (e) {
+      if (isOpen() && !header.contains(e.target)) setOpen(false);
+    });
+    // back to desktop layout: drop the open state
+    if (window.matchMedia) {
+      var mq = window.matchMedia('(min-width: 901px)');
+      var onChange = function () { if (mq.matches) setOpen(false); };
+      if (mq.addEventListener) mq.addEventListener('change', onChange);
+      else if (mq.addListener) mq.addListener(onChange);
+    }
+  }
+
   /* ---------- hero name: cursor-proximity variable font weight ----------
      Letters individually morph their `wght` axis based on distance to the
      cursor. Ported from a React/Framer component to vanilla JS, with cached
@@ -188,9 +274,8 @@
 
   function hpEnabled() {
     if (!window.matchMedia || !('fontVariationSettings' in document.documentElement.style)) return false;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
     // pointer-driven effect: desktop only, skip touch devices
-    return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    return !reducedMotion() && finePointer();
   }
 
   function initHeroProximity() {
@@ -280,14 +365,27 @@
   /* ---------- boot ---------- */
 
   document.addEventListener('DOMContentLoaded', function () {
-    // parallax
+    // Scroll work runs at most once per frame. Parallax on the hero glows is
+    // desktop-only (on phones it fights the URL bar and costs a repaint per
+    // frame) and stops once the hero is scrolled past.
     var hero = $('heroPar');
-    window.addEventListener('scroll', function () {
+    var parallax = !!hero && finePointer() && !reducedMotion();
+    var scrollQueued = false;
+    function onScrollFrame() {
+      scrollQueued = false;
       var y = window.scrollY || 0;
-      if (hero) hero.style.transform = 'translateY(' + (y * 0.22) + 'px)';
+      if (parallax && y < window.innerHeight * 1.2) {
+        hero.style.transform = 'translate3d(0,' + (y * 0.22) + 'px,0)';
+      }
       onScrollSpy();
+    }
+    window.addEventListener('scroll', function () {
+      if (!scrollQueued) { scrollQueued = true; requestAnimationFrame(onScrollFrame); }
     }, { passive: true });
 
+    syncHeaderOffset();
+    window.addEventListener('resize', syncHeaderOffset);
+    setupMenu();
     setupScrollSpy();
     initHeroProximity();
 
@@ -295,7 +393,7 @@
     var btt = $('backToTop');
     if (btt) {
       btt.addEventListener('click', function () {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: scrollBehavior() });
       });
     }
 
@@ -316,11 +414,15 @@
       var target = id === 'top' ? document.body : document.getElementById(id);
       if (!target) return;
       e.preventDefault();
-      window.scrollTo({ top: id === 'top' ? 0 : target.offsetTop - 70, behavior: 'smooth' });
+      if (id === 'top') window.scrollTo({ top: 0, behavior: scrollBehavior() });
+      else target.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });  // honours scroll-padding-top
       if (window.history && history.replaceState) history.replaceState(null, '', window.location.pathname);
     });
 
     setupBrands();
+    setupMarqueePause();
+    setupFilmsMore();
+    setupReelsCount();
     bindHover(document);
     setupReveal();
     hydrateThumbs(document);
