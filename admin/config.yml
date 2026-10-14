@@ -137,7 +137,24 @@ collections:
               - { label: "Role line", name: "role", widget: "string" }
               - { label: "First name (big)", name: "firstName", widget: "string" }
               - { label: "Last name (outlined)", name: "lastName", widget: "string" }
-              - { label: "Tagline", name: "tagline", widget: "text" }
+              - { label: "Tagline", name: "tagline", widget: "text", hint: "Keep it under 20 words so the hero fits on one screen." }
+              - label: "Hero reel (full-screen background behind your name)"
+                name: "reel"
+                widget: "object"
+                collapsed: true
+                hint: "Upload a showreel video and it fills the whole first screen behind your name, muted and looping. With no video, the background cross-fades through stills."
+                fields:
+                  - { label: "Show the background", name: "enabled", widget: "boolean", default: true, hint: "Turn off to go back to the plain dark hero with the moving blue glows. Your video and stills stay saved for later." }
+                  - { label: "Showreel video (optional)", name: "video", widget: "file", required: false, default: "", hint: "MP4 (H.264), 16:9, 1920x1080, 10-20 seconds, no sound needed, ideally under 10 MB. The left side sits under a dark fade so the name stays readable, so keep the action centre or right. It plays muted on a loop and pauses when scrolled away. Visitors who ask for reduced motion see the poster instead." }
+                  - { label: "Poster image (optional)", name: "poster", widget: "image", required: false, default: "", hint: "Shown while the video loads and for reduced-motion visitors. 16:9, about 1280x720. Leave empty to use the first still. Avoid images with text on them, they sit behind your name." }
+                  - { label: "Full showreel link (optional)", name: "link", widget: "string", required: false, default: "#work", hint: "Optional. Paste a YouTube or Vimeo link to your full showreel and a Watch showreel button appears in the hero. Leave as #work for no button." }
+                  - label: "Stills (used only when there is no video)"
+                    name: "stills"
+                    widget: "list"
+                    required: false
+                    default: []
+                    hint: "Up to 5 images, 16:9, at least 1920 wide (they fill the screen). Pick frames without titles or text, since they sit behind your name. Leave empty to use the film thumbnails automatically."
+                    field: { label: "Image", name: "image", widget: "image" }
 
           - label: "Marquee band words"
             name: "marquee"
@@ -204,8 +221,8 @@ collections:
             collapsed: true
             fields:
               - { label: "Portrait photo", name: "portrait", widget: "image", allow_multiple: false }
-              - { label: "Portrait caption — name", name: "captionName", widget: "string" }
-              - { label: "Portrait caption — location", name: "captionLocation", widget: "string" }
+              - { label: "Portrait caption: name (not shown at the moment)", name: "captionName", widget: "string", required: false }
+              - { label: "Portrait caption: location (not shown at the moment)", name: "captionLocation", widget: "string", required: false }
               - { label: "Bio (HTML allowed for accent highlights)", name: "bio", widget: "text", hint: 'Wrap words in <span style="color:var(--ac);">…</span> to highlight them' }
               - { label: "Based in", name: "basedIn", widget: "string" }
               - { label: "Languages", name: "languages", widget: "string" }
@@ -226,7 +243,7 @@ collections:
               - { label: "Period", name: "period", widget: "string" }
               - { label: "Location", name: "location", widget: "string" }
               - { label: "Role", name: "role", widget: "string" }
-              - { label: "Organisation (start with —)", name: "org", widget: "string" }
+              - { label: "Organisation", name: "org", widget: "string", hint: 'Written after the role, so start with "at", e.g. "at Eaton Business School".' }
               - { label: "Description", name: "desc", widget: "text" }
               - { label: "Button label (optional)", name: "linkLabel", widget: "string", required: false, default: "" }
               - { label: "Button link (optional)", name: "linkHref", widget: "string", required: false, default: "" }

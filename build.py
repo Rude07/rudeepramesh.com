@@ -102,10 +102,9 @@ def paragraphs(text):
     return "\n".join(out)
 
 
-FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
-         '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-         '<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900'
-         '&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">')
+# Self-hosted (assets/fonts, SIL OFL), same files as the homepage
+FONTS = ('<link rel="preload" href="/assets/fonts/archivo-100-900-latin.woff2" as="font" type="font/woff2" crossorigin>'
+         '<link rel="stylesheet" href="/assets/fonts/fonts.css">')
 
 # Case-study pages share the homepage's header, buttons, play disc, footer and
 # atmosphere so the whole site reads as one. The header/menu behaviour comes
@@ -189,7 +188,7 @@ __FILMGRAIN__
 }
 
 /* case study */
-.crumbs{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;color:#6B7280;text-transform:uppercase}
+.crumbs{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;color:#8A9099;text-transform:uppercase}
 .crumbs a{transition:color .2s __EASE__}
 .crumbs a:hover{color:var(--ac-ink)}
 h1{font-size:clamp(2.4rem,7vw,5rem);font-weight:900;letter-spacing:-.04em;line-height:.95;
@@ -232,13 +231,14 @@ section.block{margin-bottom:clamp(36px,5vh,56px)}
 .site-footer{padding:clamp(40px,6vh,64px) clamp(20px,6vw,96px);border-top:1px solid rgba(255,255,255,.07)}
 .site-footer .row{max-width:1340px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;
  align-items:center;gap:18px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.14em;
- color:#6B7280;text-transform:uppercase}
+ color:#8A9099;text-transform:uppercase}
 .site-footer .loc{color:#8A9099}
 .btt{flex:none;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;
  background:transparent;border:1px solid rgba(255,255,255,.22);color:#F4F6F8;cursor:pointer;
  transition:border-color .2s __EASE__,background-color .2s __EASE__,transform .12s __EASE__}
 .btt svg{width:16px;height:16px}
-.btt svg path{fill:currentColor}
+.btt svg{fill:currentColor}
+.back-link svg{width:14px;height:14px;fill:currentColor;margin-right:8px}
 .btt:active{transform:scale(.97)}
 .btt:focus-visible{outline:2px solid var(--ac-ink);outline-offset:4px}
 @media (hover:hover) and (pointer:fine){.btt:hover{border-color:#F4F6F8;background:rgba(255,255,255,.06)}}
@@ -271,10 +271,15 @@ section.block{margin-bottom:clamp(36px,5vh,56px)}
 """.replace("__ACCENT_INK__", ACCENT_INK).replace("__ACCENT__", ACCENT).replace("__EASE__", EASE) \
    .replace("__GRAIN_CSS__", GRAIN_BG).replace("__FILMGRAIN__", FILMGRAIN)
 
-ARROW_RIGHT = ('<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'
-               '<path d="M4 11h12.2l-5.6-5.6L12 4l8 8-8 8-1.4-1.4 5.6-5.6H4z"/></svg>')
-ARROW_EXT = ('<svg class="ext" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'
-             '<path d="M7 5h12v12h-2.4V9.1L6.7 19 5 17.3l9.9-9.9H7z"/></svg>')
+# Phosphor Icons (bold weight, MIT), the same glyphs index.html uses
+ARROW_RIGHT = ('<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'
+               '<path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg>')
+ARROW_EXT = ('<svg class="ext" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'
+             '<path d="M204,64V168a12,12,0,0,1-24,0V93L72.49,200.49a12,12,0,0,1-17-17L163,76H88a12,12,0,0,1,0-24H192A12,12,0,0,1,204,64Z"/></svg>')
+ARROW_LEFT = ('<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'
+              '<path d="M228,128a12,12,0,0,1-12,12H69l51.52,51.51a12,12,0,0,1-17,17l-72-72a12,12,0,0,1,0-17l72-72a12,12,0,0,1,17,17L69,116H216A12,12,0,0,1,228,128Z"/></svg>')
+ARROW_UP = ('<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'
+            '<path d="M208.49,120.49a12,12,0,0,1-17,0L140,69V216a12,12,0,0,1-24,0V69L64.49,120.49a12,12,0,0,1-17-17l72-72a12,12,0,0,1,17,0l72,72A12,12,0,0,1,208.49,120.49Z"/></svg>')
 
 # site.js reads the .js class (set before paint) and drives the menu + back-to-top
 PAGE_SCRIPTS = ('<script>document.documentElement.classList.add(\'js\')</script>\n'
@@ -298,14 +303,12 @@ def header_html(active="studies"):
 
 def footer_html():
     f = site.get("footer", {})
-    return ('<footer class="site-footer"><div class="row">'
-            '<span>%s</span><span class="loc">%s</span>'
-            '<button class="btt" id="backToTop" type="button" aria-label="Back to top">'
-            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'
-            '<path d="M12 3.5 20 11.5 17.9 13.6 13.5 9.2V20.5h-3V9.2L6.1 13.6 4 11.5z"/></svg></button>'
-            '</div></footer>'
-            % (esc(f.get("copyright") or "© %d %s" % (datetime.date.today().year, PERSON)),
-               esc(f.get("location", ""))))
+    return (('<footer class="site-footer"><div class="row">'
+             '<span>%s</span><span class="loc">%s</span>'
+             '<button class="btt" id="backToTop" type="button" aria-label="Back to top">')
+            + ARROW_UP + '</button></div></footer>') % (
+               esc(f.get("copyright") or "© %d %s" % (datetime.date.today().year, PERSON)),
+               esc(f.get("location", "")))
 
 
 def project_page(slug, p):
@@ -409,14 +412,14 @@ def project_page(slug, p):
   <h1>%(title)s</h1>
   <dl class="meta">%(meta)s</dl>
   <div class="hero-media">
-    <img src="%(thumb)s" alt="%(title)s \u2014 %(category)s by %(person)s" width="1280" height="720" fetchpriority="high" decoding="async">
+    <img src="%(thumb)s" alt="%(title)s, %(category)s by %(person)s" width="1280" height="720" fetchpriority="high" decoding="async">
     <a class="play-disc" href="%(video)s" target="_blank" rel="noopener" aria-label="Play %(title)s"><span></span></a>
   </div>
   <div class="actions">%(watch)s</div>
   <p class="lede">%(summary)s</p>
   %(blocks)s
   %(tools)s
-  <div class="backrow"><a class="back-link" href="/work/">\u2190 All case studies</a><a class="btn btn-secondary" href="/#contact">Get in touch%(arrow)s</a></div>
+  <div class="backrow"><a class="back-link" href="/work/">%(arrow_left)sAll case studies</a><a class="btn btn-secondary" href="/#contact">Get in touch%(arrow)s</a></div>
 </main>
 %(footer)s
 </body>
@@ -429,7 +432,7 @@ def project_page(slug, p):
         "thumb": esc(thumb), "category": esc(p.get("category", "")), "person": esc(PERSON),
         "video": esc(p.get("videoUrl", "#")), "watch": watch,
         "summary": esc(p.get("summary", "")), "blocks": blocks, "tools": tools,
-        "footer": footer_html(), "scripts": PAGE_SCRIPTS, "arrow": ARROW_RIGHT,
+        "footer": footer_html(), "scripts": PAGE_SCRIPTS, "arrow": ARROW_RIGHT, "arrow_left": ARROW_LEFT,
     }
 
 
@@ -438,7 +441,7 @@ def work_index(projects):
     for slug, p in projects:
         cards += (
             '<a class="card" href="/work/%s/"><div class="m">'
-            '<img src="%s" alt="%s \u2014 %s by %s" loading="lazy" decoding="async" width="1280" height="720"></div>'
+            '<img src="%s" alt="%s, %s by %s" loading="lazy" decoding="async" width="1280" height="720"></div>'
             '<h2>%s</h2><p>%s \u00b7 %s</p></a>\n'
             % (slug, esc(rooted(p.get("thumb", ""))), esc(p["title"]), esc(p.get("category", "")),
                esc(PERSON), esc(p["title"]), esc(p.get("category", "")), esc(p.get("year", "")))
@@ -686,6 +689,72 @@ def _render_brand_tiles(brands):
     return "".join(tile(b) for b in brands), "".join(tile(b) for b in rotated)
 
 
+REEL_FRAMES = 5  # index.html's reelFade keyframes are timed for exactly five
+
+
+def _video_type(src):
+    ext = os.path.splitext(str(src).split("?")[0])[1].lower()
+    return {".webm": "video/webm", ".mov": "video/quicktime"}.get(ext, "video/mp4")
+
+
+def _hero_stills(site):
+    """CMS stills, or else the films that have a local thumbnail. The featured
+    film is left out on purpose: its thumbnail is a title card whose lettering
+    fights the hero name (YouTube stills are skipped for their letterbox bars)."""
+    reel = site.get("hero", {}).get("reel") or {}
+    pool = [x for x in (reel.get("stills") or []) if x]
+    if not pool:
+        pool = [f["thumb"] for f in site.get("films", [])
+                if f.get("thumb") and not re.match(r"^https?:", f["thumb"])]
+    if not pool and site.get("featured", {}).get("thumb"):
+        pool = [site["featured"]["thumb"]]
+    return pool
+
+
+def _hero_reel_on(site):
+    """CMS switch: off leaves the plain dark hero with only the glows."""
+    reel = site.get("hero", {}).get("reel") or {}
+    return reel.get("enabled", True) is not False
+
+
+def _render_hero_reel(site):
+    """The full-bleed hero background (CMS: Hero > Hero reel).
+
+    With a video: a muted, looping <video> showing the poster until js/site.js
+    starts it (it stays on the poster for reduced-motion / save-data visitors
+    and pauses off-screen). Without one: five stills cross-fading in CSS."""
+    reel = site.get("hero", {}).get("reel") or {}
+    if not _hero_reel_on(site):
+        return ""
+    pool = _hero_stills(site)
+    video = (reel.get("video") or "").strip()
+    if video:
+        poster = (reel.get("poster") or (pool[0] if pool else "")).strip()
+        return ('<video muted loop playsinline preload="none" disablepictureinpicture%s>'
+                '<source src="%s" type="%s"></video>'
+                % (' poster="%s"' % esc(poster) if poster else "", esc(video), _video_type(video)))
+    if not pool:
+        return ""
+    out = []
+    for i in range(REEL_FRAMES):
+        load = 'fetchpriority="high"' if i == 0 else 'loading="lazy"'
+        out.append('<img src="%s" alt="" %s decoding="async" width="1280" height="720" style="--i:%d">'
+                   % (esc(pool[i % len(pool)]), load, i))
+    return "".join(out)
+
+
+def _render_hero_play(site):
+    """'Watch showreel' button, only when the CMS link points off-site (a
+    YouTube/Vimeo showreel). The default #work is already the View work CTA."""
+    reel = site.get("hero", {}).get("reel") or {}
+    link = (reel.get("link") or "").strip()
+    if not _hero_reel_on(site) or not re.match(r"^https?:", link):
+        return ""
+    return ('<a class="hero-play" href="%s" target="_blank" rel="noopener">'
+            '<span class="disc" aria-hidden="true"><span></span></span>Watch showreel'
+            '<span class="sr-only"> (opens in a new tab)</span></a>' % esc(link))
+
+
 def _render_jsonld(site):
     s, seo = site["schema"], site["seo"]
     canonical = seo.get("canonical", "")
@@ -753,6 +822,12 @@ def prerender_index(site):
     h = _swap_el(h, "heroFirst", esc(hero["firstName"]))
     h = _swap_el(h, "heroLast", esc(hero["lastName"]))
     h = _swap_el(h, "heroTagline", esc(hero["tagline"]))
+    if 'id="heroReel"' in h:
+        h = _swap_el(h, "heroReel", _render_hero_reel(site))
+    h = re.sub(r'<section class="hero[^"]*">',
+               '<section class="hero%s">' % ("" if _hero_reel_on(site) else " hero--plain"), h, count=1)
+    if 'id="heroPlay"' in h:
+        h = _swap_el(h, "heroPlay", _render_hero_play(site))
 
     # ---- marquee ----
     # The skills marquee band was removed from the page (the logo strip is
@@ -788,8 +863,11 @@ def prerender_index(site):
     # ---- about ----
     h = re.sub(r'(<img[^>]*\bid="aboutPortrait"[^>]*\bsrc=")([^"]*)(")',
                lambda m: m.group(1) + esc(about["portrait"]) + m.group(3), h, count=1)
-    h = _swap_el(h, "aboutCapName", esc(about["captionName"]))
-    h = _swap_el(h, "aboutCapLoc", esc(about["captionLocation"]))
+    # the caption overlaid on the portrait was removed from the design; the
+    # CMS fields still exist, so fill them only if the markup comes back
+    if 'id="aboutCapName"' in h:
+        h = _swap_el(h, "aboutCapName", esc(about["captionName"]))
+        h = _swap_el(h, "aboutCapLoc", esc(about["captionLocation"]))
     # intentionally raw HTML (accent spans); point those spans at the text-safe tint
     h = _swap_el(h, "aboutBio", re.sub(r"(?<![\w-])color:\s*var\(--ac\)",
                                        "color:var(--ac-ink)", about["bio"]))
