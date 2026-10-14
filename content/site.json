@@ -122,46 +122,46 @@
   },
   "experience": [
     {
-      "period": "FEB 2026 — NOW",
+      "period": "FEB 2026 - NOW",
       "location": "Coimbatore",
       "role": "Motion Designer",
-      "org": "— Eaton Business School",
+      "org": "at Eaton Business School",
       "desc": "Testimonial films, promotional films and motion-graphics packages for an international DBA/EMBA audience. Cinematic campaign content built with Google Veo and After Effects, plus reusable brand-aligned motion systems.",
       "linkLabel": "FEATURED ON EBS TEAM PAGE",
       "linkHref": "https://ebsedu.org/in/marketing-operations/"
     },
     {
-      "period": "AUG 2023 — JAN 2026",
+      "period": "AUG 2023 - JAN 2026",
       "location": "Kannur",
       "role": "Motion Designer",
-      "org": "— ABC Group India",
-      "desc": "Directed ad films and produced 150+ short-form pieces end-to-end across education, food, retail and manufacturing — +30% engagement, +25% brand recognition. Taught video production and editing at abcademy.",
+      "org": "at ABC Group India",
+      "desc": "Directed ad films and produced 150+ short-form pieces end-to-end across education, food, retail and manufacturing, with +40% engagement, +25% brand recognition. Taught video production and editing at ABCADEMY.",
       "linkLabel": "",
       "linkHref": ""
     },
     {
-      "period": "2022 — 2023",
+      "period": "2022 - 2023",
       "location": "Kochi",
       "role": "Video Editor",
-      "org": "— TALROP · Steyp",
+      "org": "at TALROP · Steyp",
       "desc": "Produced 100+ social-media videos and educational content for one of Kerala's leading EdTech companies.",
       "linkLabel": "",
       "linkHref": ""
     },
     {
-      "period": "2020 — 2021",
+      "period": "2020 - 2021",
       "location": "Kannur",
       "role": "Video Editor",
-      "org": "— InfoM News",
+      "org": "at InfoM News",
       "desc": "Edited social-media news videos across multiple platforms under tight daily deadlines.",
       "linkLabel": "",
       "linkHref": ""
     },
     {
-      "period": "2019 — 2021",
+      "period": "2019 - 2021",
       "location": "Kannur",
       "role": "Creative Director / Editor",
-      "org": "— Mirror One Productions",
+      "org": "at Mirror One Productions",
       "desc": "Directed creative production from concept development through final delivery, aligning creative vision with client and business goals.",
       "linkLabel": "",
       "linkHref": ""
@@ -261,7 +261,7 @@
     "portrait": "assets/rudeep.jpg",
     "captionName": "Rudeep Ramesh",
     "captionLocation": " / Kannur",
-    "bio": "I'm a motion designer and video producer with <span style=\"color:var(--ac);\">6+ years</span> across the full production pipeline — from pre-production and direction to camera, lighting, editing and <span style=\"color:var(--ac);\">motion graphics</span>. I build cinematic content for education, retail, manufacturing and corporate brands.",
+    "bio": "I'm a motion designer and video producer with <span style=\"color:var(--ac);\">6+ years</span> across the full production pipeline, from pre-production and direction to camera, lighting, editing and <span style=\"color:var(--ac);\">motion graphics</span>. I build cinematic content for education, retail, manufacturing and corporate brands.",
     "basedIn": "Kannur, Kerala, India",
     "languages": "English · Malayalam · Hindi · Tamil",
     "also": "Scriptwriting · Direction · Acting · Music",
@@ -278,8 +278,8 @@
   },
   "featured": {
     "title": "Aantharam",
-    "subtitle": "- Short Film ",
-    "byline": "Written, Directed & Edited by Rudeep, Genre: Psychological Drama/Mystery",
+    "subtitle": "- Short Film",
+    "byline": "Written, Directed & Edited by Rudeep. Genre: Psychological Drama / Mystery",
     "frame": "[ FRAME — SHORT FILM ]",
     "badgeLeft": "FT",
     "badgeRight": "● DIR. BY RUDEEP",
@@ -298,7 +298,7 @@
     },
     {
       "num": "02",
-      "title": "Eid Festival Ad ",
+      "title": "Eid Festival Ad",
       "tag": "ABC Group India · Director & Editor",
       "frame": "[ FRAME — AD FILM ]",
       "badge": "● 4K",
@@ -325,8 +325,8 @@
     },
     {
       "num": "05",
-      "title": "Brand Launch ",
-      "tag": "Oraak · Motion designer",
+      "title": "Brand Launch",
+      "tag": "Oraak · Motion Designer",
       "frame": "[ FRAME — BRAND FILM ]",
       "badge": "● 4K",
       "href": "https://drive.google.com/file/d/1R93UqY4QO4Lsm7JpDIn1MDOAJjTijh01/view?usp=drive_link",
@@ -353,7 +353,7 @@
     {
       "num": "08",
       "title": "Logo Rebranding",
-      "tag": "abcademy · Motion Graphics",
+      "tag": "ABCADEMY · Motion Graphics",
       "frame": "[ FRAME — BRANDING ]",
       "badge": "HD",
       "href": "https://youtu.be/0DSHgHFbam4",
@@ -362,7 +362,7 @@
     {
       "num": "09",
       "title": "Podcast",
-      "tag": "abcademy · Editor",
+      "tag": "ABCADEMY · Editor",
       "frame": "[ FRAME — TESTIMONIAL ]",
       "badge": "HD",
       "href": "https://youtu.be/jxB1BoRgHLo",
@@ -480,15 +480,22 @@
     }
   ],
   "hero": {
-    "role": "Motion Designer  //  Video Producer",
+    "role": "Motion Designer / Video Producer",
     "firstName": "Rudeep",
     "lastName": "Ramesh",
-    "tagline": "6+ years across the full production pipeline — direction, camera, lighting, editing and motion graphics. Cinematic content for education, retail, manufacturing and corporate brands.",
-    "image": ""
+    "tagline": "6+ years of direction, camera, lighting, editing and motion graphics. Cinematic films for education, retail, manufacturing and corporate brands.",
+    "image": "",
+    "reel": {
+      "enabled": true,
+      "video": "",
+      "poster": "",
+      "link": "#work",
+      "stills": []
+    }
   },
   "footer": {
     "copyright": "© 2026 Rudeep Ramesh M V",
-    "location": "Based in Kannur, Kerala — Available Worldwide"
+    "location": "Based in Kannur, Kerala. Available worldwide"
   },
   "seo": {
     "title": "Rudeep Ramesh M V — Motion Designer & Video Producer",

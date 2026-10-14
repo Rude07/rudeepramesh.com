@@ -3,7 +3,7 @@
    All page CONTENT is prerendered into index.html by build.py from
    content/site.json. This file never writes copy, never fetches site.json
    and never re-renders a section: it only does things that need a live
-   browser — scroll spy, reveal-on-scroll, parallax, hover states, lazy
+   browser: scroll spy, reveal-on-scroll, hover states, lazy
    thumbnails, the cursor-proximity hero, and measuring the brands marquee.
 
    If you need to change a word, change content/site.json (or /admin).
@@ -148,36 +148,76 @@
       if (!sec) return;
       spyLinks.push(a); spySections.push(sec);
     });
-    onScrollSpy();
-  }
-  function onScrollSpy() {
-    if (!spyLinks.length) return;
-    var pos = window.scrollY + (window.innerHeight * 0.32);
-    var activeIdx = -1;
-    for (var i = 0; i < spySections.length; i++) {
-      var sec = spySections[i];
-      if (sec && sec.offsetTop <= pos) activeIdx = i;
+    if (!spyLinks.length || !('IntersectionObserver' in window)) return;
+    // A section is "current" while it crosses a line 32% down the viewport;
+    // nested targets (#studies sits inside #work) win by coming later.
+    var crossing = spySections.map(function () { return false; });
+    var atBottom = false, lastIdx = -1;
+    function paint() {
+      var idx = -1;
+      for (var i = 0; i < crossing.length; i++) if (crossing[i]) idx = i;
+      if (atBottom) idx = spyLinks.length - 1;      // short last section (contact)
+      if (idx === -1) idx = lastIdx;                // between sections: keep the last one
+      lastIdx = idx;
+      spyLinks.forEach(function (a, i) { a.classList.toggle('is-active', i === idx); });
     }
-    // near bottom => last link (contact)
-    if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight - 4)
-      activeIdx = spyLinks.length - 1;
-    spyLinks.forEach(function (a, i) { a.classList.toggle('is-active', i === activeIdx); });
+    var lineObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        var i = spySections.indexOf(en.target);
+        if (i !== -1) crossing[i] = en.isIntersecting;
+      });
+      paint();
+    }, { rootMargin: '-32% 0px -68% 0px' });
+    spySections.forEach(function (sec) { lineObs.observe(sec); });
+    var foot = document.querySelector('footer');
+    if (foot) {
+      new IntersectionObserver(function (entries) {
+        atBottom = entries[0].isIntersecting;
+        paint();
+      }, { threshold: 0.9 }).observe(foot);
+    }
   }
 
   /* ---------- logo marquee: pause while off-screen ----------
-     Its two infinite loops otherwise keep the compositor busy for the whole
+     Its two infinite loops (and the hero reel) would otherwise keep the compositor busy for the whole
      page. CSS pauses .track under .is-offscreen. */
   function setupMarqueePause() {
     if (!('IntersectionObserver' in window)) return;
     var bands = [];
     var brands = $('brands');
     if (brands) bands.push(brands);
+    var reel = $('heroReel');
+    if (reel) bands.push(reel);
+    var hero = document.querySelector('.hero');
+    if (hero) bands.push(hero);  // the drifting glows
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         en.target.classList.toggle('is-offscreen', !en.isIntersecting);
       });
     }, { rootMargin: '100px 0px' });
     bands.forEach(function (b) { obs.observe(b); });
+  }
+
+  /* ---------- hero reel video ----------
+     build.py writes a muted, looping <video preload="none"> when a showreel
+     is set in the CMS. It only loads and plays while on screen, and never
+     for reduced-motion or data-saver visitors (they keep the poster). */
+  function setupHeroReel() {
+    var reel = $('heroReel');
+    var video = reel && reel.querySelector('video');
+    if (!video) return;
+    var conn = navigator.connection || {};
+    if (reducedMotion() || conn.saveData) return;
+    video.muted = true;  // autoplay policies need the property, not just the attribute
+    function play() {
+      if (video.preload !== 'auto') video.preload = 'auto';
+      var p = video.play();
+      if (p && p.catch) p.catch(function () {});  // blocked autoplay: poster stays
+    }
+    if (!('IntersectionObserver' in window)) { play(); return; }
+    new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) play(); else video.pause();
+    }, { threshold: 0.25 }).observe(video);
   }
 
   /* ---------- work section on phones ----------
@@ -260,7 +300,7 @@
   /* ---------- hero name: cursor-proximity variable font weight ----------
      Letters individually morph their `wght` axis based on distance to the
      cursor. Ported from a React/Framer component to vanilla JS, with cached
-     letter positions (measured on scroll/resize/font-load rather than every
+     letter positions (measured in page coordinates on resize/font-load, not every
      frame) and an idle-stopping rAF loop. Requires the variable Archivo
      requested in index.html (wght@100..900). */
   var HP = {
@@ -308,9 +348,8 @@
     if (!hpBound) {
       hpBound = true;
       window.addEventListener('mousemove', function (e) {
-        hpMouse.x = e.clientX; hpMouse.y = e.clientY; hpStart();
+        hpMouse.x = e.pageX; hpMouse.y = e.pageY; hpStart();
       }, { passive: true });
-      window.addEventListener('scroll', hpQueueMeasure, { passive: true });
       window.addEventListener('resize', hpQueueMeasure);
       if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(hpMeasure).catch(function () {});
@@ -326,9 +365,10 @@
 
   function hpMeasure() {
     for (var i = 0; i < hpLetters.length; i++) {
+      // page coordinates, so scrolling doesn't invalidate them
       var r = hpLetters[i].el.getBoundingClientRect();
-      hpLetters[i].cx = r.left + r.width / 2;
-      hpLetters[i].cy = r.top + r.height / 2;
+      hpLetters[i].cx = r.left + window.scrollX + r.width / 2;
+      hpLetters[i].cy = r.top + window.scrollY + r.height / 2;
     }
   }
 
@@ -365,24 +405,8 @@
   /* ---------- boot ---------- */
 
   document.addEventListener('DOMContentLoaded', function () {
-    // Scroll work runs at most once per frame. Parallax on the hero glows is
-    // desktop-only (on phones it fights the URL bar and costs a repaint per
-    // frame) and stops once the hero is scrolled past.
-    var hero = $('heroPar');
-    var parallax = !!hero && finePointer() && !reducedMotion();
-    var scrollQueued = false;
-    function onScrollFrame() {
-      scrollQueued = false;
-      var y = window.scrollY || 0;
-      if (parallax && y < window.innerHeight * 1.2) {
-        hero.style.transform = 'translate3d(0,' + (y * 0.22) + 'px,0)';
-      }
-      onScrollSpy();
-    }
-    window.addEventListener('scroll', function () {
-      if (!scrollQueued) { scrollQueued = true; requestAnimationFrame(onScrollFrame); }
-    }, { passive: true });
-
+    // The hero glow parallax is a CSS scroll-driven animation and the scroll
+    // spy uses IntersectionObserver, so nothing here listens to page scroll.
     syncHeaderOffset();
     window.addEventListener('resize', syncHeaderOffset);
     setupMenu();
@@ -421,6 +445,7 @@
 
     setupBrands();
     setupMarqueePause();
+    setupHeroReel();
     setupFilmsMore();
     setupReelsCount();
     bindHover(document);
