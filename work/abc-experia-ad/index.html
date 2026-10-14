@@ -22,7 +22,7 @@
       "name": "ABC Experia Ad",
       "url": "https://rudeepramesh.com/work/abc-experia-ad/",
       "description": "A launch film for ABC Experia, North Malabar's largest premium experience centre, directed and edited by Rudeep Ramesh.",
-      "genre": "Ad Film \u00b7 Brand Launch",
+      "genre": "Ad Film · Brand Launch",
       "image": "https://rudeepramesh.com/images/uploads/abc-experia.jpg",
       "creator": {
         "@type": "Person",
@@ -34,16 +34,24 @@
         "@id": "https://rudeepramesh.com/#person",
         "name": "Rudeep Ramesh M V"
       },
-      "dateCreated": "2025"
+      "dateCreated": "2024",
+      "video": {
+        "@id": "https://rudeepramesh.com/work/abc-experia-ad/#video"
+      }
     },
     {
       "@type": "VideoObject",
+      "@id": "https://rudeepramesh.com/work/abc-experia-ad/#video",
       "name": "ABC Experia Ad",
       "description": "A launch film for ABC Experia, North Malabar's largest premium experience centre, directed and edited by Rudeep Ramesh.",
       "thumbnailUrl": "https://rudeepramesh.com/images/uploads/abc-experia.jpg",
-      "uploadDate": "2025-01-01",
-      "contentUrl": "https://youtu.be/PyQi7QxBn3E?si=Ht89DsADCCf7QGvk",
-      "embedUrl": "https://youtu.be/PyQi7QxBn3E?si=Ht89DsADCCf7QGvk"
+      "uploadDate": "2024-10-09T00:00:00+05:30",
+      "duration": "PT43S",
+      "embedUrl": "https://www.youtube.com/embed/PyQi7QxBn3E",
+      "creator": {
+        "@id": "https://rudeepramesh.com/#person"
+      },
+      "mainEntityOfPage": "https://rudeepramesh.com/work/abc-experia-ad/"
     },
     {
       "@type": "BreadcrumbList",
@@ -148,7 +156,7 @@ main.wrap{padding-top:clamp(104px,15vh,150px)}
 
 /* case study */
 .crumbs{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;color:#8A9099;text-transform:uppercase}
-.crumbs a{transition:color .2s cubic-bezier(.16,1,.3,1)}
+.crumbs a{transition:color .2s cubic-bezier(.16,1,.3,1);display:inline-block;padding:14px 4px;margin:-14px -4px}
 .crumbs a:hover{color:var(--ac-ink)}
 h1{font-size:clamp(2.4rem,7vw,5rem);font-weight:900;letter-spacing:-.04em;line-height:.95;
  text-transform:uppercase;margin:16px 0 22px}
@@ -159,6 +167,7 @@ h1{font-size:clamp(2.4rem,7vw,5rem);font-weight:900;letter-spacing:-.04em;line-h
 .hero-media{position:relative;aspect-ratio:16/9;overflow:hidden;border:1px solid rgba(255,255,255,.08);
  background:#0E1013;margin-bottom:24px}
 .hero-media img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-media iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
 .play-disc{position:absolute;left:50%;top:50%;width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;
  background:var(--ac);display:flex;align-items:center;justify-content:center;
  transition:background-color .2s cubic-bezier(.16,1,.3,1),transform .12s cubic-bezier(.16,1,.3,1)}
@@ -237,12 +246,11 @@ section.block{margin-bottom:clamp(36px,5vh,56px)}
 <main class="wrap">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/work/">Case studies</a> / ABC Experia Ad</nav>
   <h1>ABC Experia Ad</h1>
-  <dl class="meta"><div><dt>Client</dt><dd>ABC Group India (ABC Experia)</dd></div><div><dt>Role</dt><dd>Director, Editor &amp; Production (full crew)</dd></div><div><dt>Year</dt><dd>2025</dd></div><div><dt>Type</dt><dd>Ad Film · Brand Launch</dd></div></dl>
+  <dl class="meta"><div><dt>Client</dt><dd>ABC Group India (ABC Experia)</dd></div><div><dt>Role</dt><dd>Director, Editor &amp; Production (full crew)</dd></div><div><dt>Year</dt><dd>2024</dd></div><div><dt>Type</dt><dd>Ad Film · Brand Launch</dd></div></dl>
   <div class="hero-media">
-    <img src="/images/uploads/abc-experia.jpg" alt="ABC Experia Ad, Ad Film · Brand Launch by Rudeep Ramesh M V" width="1280" height="720" fetchpriority="high" decoding="async">
-    <a class="play-disc" href="https://youtu.be/PyQi7QxBn3E?si=Ht89DsADCCf7QGvk" target="_blank" rel="noopener" aria-label="Play ABC Experia Ad"><span></span></a>
+    <iframe src="https://www.youtube.com/embed/PyQi7QxBn3E?rel=0" title="ABC Experia Ad, Ad Film · Brand Launch by Rudeep Ramesh M V" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </div>
-  <div class="actions"><a class="btn btn-primary" href="https://youtu.be/PyQi7QxBn3E?si=Ht89DsADCCf7QGvk" target="_blank" rel="noopener">Watch the film<svg class="ext" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M204,64V168a12,12,0,0,1-24,0V93L72.49,200.49a12,12,0,0,1-17-17L163,76H88a12,12,0,0,1,0-24H192A12,12,0,0,1,204,64Z"/></svg></a></div>
+  <div class="actions"><a class="btn btn-primary" href="https://youtu.be/PyQi7QxBn3E?si=Ht89DsADCCf7QGvk" target="_blank" rel="noopener">Watch on YouTube<svg class="ext" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M204,64V168a12,12,0,0,1-24,0V93L72.49,200.49a12,12,0,0,1-17-17L163,76H88a12,12,0,0,1,0-24H192A12,12,0,0,1,204,64Z"/></svg></a></div>
   <p class="lede">A launch film for ABC Experia, North Malabar&#x27;s largest premium experience centre, directed and edited by Rudeep Ramesh.</p>
   <section class="block"><h2>Overview</h2><p>A launch ad for ABC Experia, North Malabar&#x27;s largest experience centre for premier brands and world-class products. The film showcases the showroom&#x27;s exquisite collections and dedicated display centres for Jaquar, Simpolo, Artize, Nexion and Essco, capturing the scale and premium feel of the space ahead of its opening.</p></section>
 <section class="block"><h2>The Challenge</h2><p>The shoot hit an unexpected crew block on the day: the department heads and most of the team were pulled into a company meeting, leaving only me, my cameraman and two unskilled hands to pull off a launch film on a fixed deadline. Every role that would normally be spread across a crew (direction, costume, lighting, production control, location management) landed on one person, with no room to push the date.</p></section>

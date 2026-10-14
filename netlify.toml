@@ -16,3 +16,14 @@
   for = "/content/site.json"
   [headers.values]
     Cache-Control = "no-cache"
+
+# Security headers for every page. No Content-Security-Policy yet: the site
+# loads YouTube embeds, Cloudflare analytics and the chat widget, so a CSP
+# needs testing in report-only mode first.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"

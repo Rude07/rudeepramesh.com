@@ -67,6 +67,8 @@ collections:
       - { label: "Category / type", name: "category", widget: "string", hint: "e.g. Ad Film, Testimonial Film, Short Film" }
       - { label: "Thumbnail image", name: "thumb", widget: "image" }
       - { label: "Video link (Drive / YouTube)", name: "videoUrl", widget: "string" }
+      - { label: "Video upload date", name: "videoUploadDate", widget: "datetime", required: false, format: "YYYY-MM-DD", date_format: "DD MMM YYYY", time_format: false, hint: "The date the video went live on YouTube. Google uses it for video search results; leave empty rather than guess." }
+      - { label: "Video length", name: "videoDuration", widget: "string", required: false, hint: "Minutes:seconds as on YouTube, e.g. 7:55 or 0:43." }
       - { label: "One-line summary (used for Google description)", name: "summary", widget: "text" }
       - { label: "Overview", name: "overview", widget: "text", required: false }
       - { label: "The challenge", name: "challenge", widget: "text", required: false }
@@ -101,6 +103,7 @@ collections:
               - { label: "Short name", name: "alternateName", widget: "string" }
               - { label: "Job title", name: "jobTitle", widget: "string" }
               - { label: "Works for", name: "worksFor", widget: "string" }
+              - { label: "Works for: website", name: "worksForUrl", widget: "string", required: false, hint: "Your employer's homepage, e.g. https://ebsedu.org. Helps Google connect you to the organisation." }
               - { label: "City", name: "locality", widget: "string" }
               - { label: "State", name: "region", widget: "string" }
               - { label: "Country code", name: "country", widget: "string" }
@@ -186,6 +189,25 @@ collections:
               - { label: "Badge right", name: "badgeRight", widget: "string" }
               - { label: "Video link", name: "href", widget: "string" }
               - { label: "Thumbnail", name: "thumb", widget: "image", allow_multiple: false }
+              - label: "Link to case study"
+                name: "caseStudyLink"
+                widget: "select"
+                required: false
+                default: "auto"
+                options:
+                  - { label: "Auto: link to the case study that uses the same YouTube video", value: "auto" }
+                  - { label: "On: link to the case study picked below", value: "manual" }
+                  - { label: "Off: always open the video link", value: "off" }
+                hint: "With a case study linked, the card opens that page on your site (label CASE STUDY) instead of YouTube or Drive (label WATCH). Auto needs the same YouTube video in both places."
+              - label: "Case study page (used when On)"
+                name: "caseStudy"
+                widget: "relation"
+                collection: "projects"
+                value_field: "{{slug}}"
+                search_fields: ["title"]
+                display_fields: ["title"]
+                required: false
+                hint: "Only used when Link to case study is On. If that page is deleted later, the card falls back to Auto."
 
           - label: "Films (main grid)"
             name: "films"
@@ -200,6 +222,25 @@ collections:
               - { label: "Badge", name: "badge", widget: "string" }
               - { label: "Video link", name: "href", widget: "string" }
               - { label: "Thumbnail", name: "thumb", widget: "image", allow_multiple: false }
+              - label: "Link to case study"
+                name: "caseStudyLink"
+                widget: "select"
+                required: false
+                default: "auto"
+                options:
+                  - { label: "Auto: link to the case study that uses the same YouTube video", value: "auto" }
+                  - { label: "On: link to the case study picked below", value: "manual" }
+                  - { label: "Off: always open the video link", value: "off" }
+                hint: "With a case study linked, the card opens that page on your site (label CASE STUDY) instead of YouTube or Drive (label WATCH). Auto needs the same YouTube video in both places."
+              - label: "Case study page (used when On)"
+                name: "caseStudy"
+                widget: "relation"
+                collection: "projects"
+                value_field: "{{slug}}"
+                search_fields: ["title"]
+                display_fields: ["title"]
+                required: false
+                hint: "Only used when Link to case study is On. If that page is deleted later, the card falls back to Auto."
 
           - label: "Reels & Social (vertical grid)"
             name: "reels"
