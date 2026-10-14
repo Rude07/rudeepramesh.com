@@ -10,7 +10,7 @@
 <meta property="og:title" content="Aantharam — Rudeep Ramesh M V">
 <meta property="og:description" content="A dreamlike short film following Jagan through a reality where his greatest loss never happened. Written, directed and edited by Rudeep Ramesh.">
 <meta property="og:url" content="https://rudeepramesh.com/work/aantharam-short-film/">
-<meta property="og:image" content="https://rudeepramesh.com/images/uploads/aantharam-thumbnail-01-1-.jpg">
+<meta property="og:image" content="https://rudeepramesh.com/images/uploads/aantharam-thumbnail-01-1-.webp">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 {
@@ -23,7 +23,7 @@
       "url": "https://rudeepramesh.com/work/aantharam-short-film/",
       "description": "A dreamlike short film following Jagan through a reality where his greatest loss never happened. Written, directed and edited by Rudeep Ramesh.",
       "genre": "Short Film",
-      "image": "https://rudeepramesh.com/images/uploads/aantharam-thumbnail-01-1-.jpg",
+      "image": "https://rudeepramesh.com/images/uploads/aantharam-thumbnail-01-1-.webp",
       "creator": {
         "@type": "Person",
         "@id": "https://rudeepramesh.com/#person",
@@ -34,16 +34,24 @@
         "@id": "https://rudeepramesh.com/#person",
         "name": "Rudeep Ramesh M V"
       },
-      "dateCreated": "2023"
+      "dateCreated": "2023",
+      "video": {
+        "@id": "https://rudeepramesh.com/work/aantharam-short-film/#video"
+      }
     },
     {
       "@type": "VideoObject",
+      "@id": "https://rudeepramesh.com/work/aantharam-short-film/#video",
       "name": "Aantharam",
       "description": "A dreamlike short film following Jagan through a reality where his greatest loss never happened. Written, directed and edited by Rudeep Ramesh.",
-      "thumbnailUrl": "https://rudeepramesh.com/images/uploads/aantharam-thumbnail-01-1-.jpg",
-      "uploadDate": "2023-01-01",
-      "contentUrl": "https://www.youtube.com/watch?v=vn529RdmOZc",
-      "embedUrl": "https://www.youtube.com/watch?v=vn529RdmOZc"
+      "thumbnailUrl": "https://rudeepramesh.com/images/uploads/aantharam-thumbnail-01-1-.webp",
+      "uploadDate": "2023-04-06T00:00:00+05:30",
+      "duration": "PT7M55S",
+      "embedUrl": "https://www.youtube.com/embed/vn529RdmOZc",
+      "creator": {
+        "@id": "https://rudeepramesh.com/#person"
+      },
+      "mainEntityOfPage": "https://rudeepramesh.com/work/aantharam-short-film/"
     },
     {
       "@type": "BreadcrumbList",
@@ -148,7 +156,7 @@ main.wrap{padding-top:clamp(104px,15vh,150px)}
 
 /* case study */
 .crumbs{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;color:#8A9099;text-transform:uppercase}
-.crumbs a{transition:color .2s cubic-bezier(.16,1,.3,1)}
+.crumbs a{transition:color .2s cubic-bezier(.16,1,.3,1);display:inline-block;padding:14px 4px;margin:-14px -4px}
 .crumbs a:hover{color:var(--ac-ink)}
 h1{font-size:clamp(2.4rem,7vw,5rem);font-weight:900;letter-spacing:-.04em;line-height:.95;
  text-transform:uppercase;margin:16px 0 22px}
@@ -159,6 +167,7 @@ h1{font-size:clamp(2.4rem,7vw,5rem);font-weight:900;letter-spacing:-.04em;line-h
 .hero-media{position:relative;aspect-ratio:16/9;overflow:hidden;border:1px solid rgba(255,255,255,.08);
  background:#0E1013;margin-bottom:24px}
 .hero-media img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-media iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
 .play-disc{position:absolute;left:50%;top:50%;width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;
  background:var(--ac);display:flex;align-items:center;justify-content:center;
  transition:background-color .2s cubic-bezier(.16,1,.3,1),transform .12s cubic-bezier(.16,1,.3,1)}
@@ -239,10 +248,9 @@ section.block{margin-bottom:clamp(36px,5vh,56px)}
   <h1>Aantharam</h1>
   <dl class="meta"><div><dt>Client</dt><dd>Independent</dd></div><div><dt>Role</dt><dd>Writer, Director &amp; Editor</dd></div><div><dt>Year</dt><dd>2023</dd></div><div><dt>Type</dt><dd>Short Film</dd></div></dl>
   <div class="hero-media">
-    <img src="/images/uploads/aantharam-thumbnail-01-1-.jpg" alt="Aantharam, Short Film by Rudeep Ramesh M V" width="1280" height="720" fetchpriority="high" decoding="async">
-    <a class="play-disc" href="https://www.youtube.com/watch?v=vn529RdmOZc" target="_blank" rel="noopener" aria-label="Play Aantharam"><span></span></a>
+    <iframe src="https://www.youtube.com/embed/vn529RdmOZc?rel=0" title="Aantharam, Short Film by Rudeep Ramesh M V" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </div>
-  <div class="actions"><a class="btn btn-primary" href="https://www.youtube.com/watch?v=vn529RdmOZc" target="_blank" rel="noopener">Watch the film<svg class="ext" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M204,64V168a12,12,0,0,1-24,0V93L72.49,200.49a12,12,0,0,1-17-17L163,76H88a12,12,0,0,1,0-24H192A12,12,0,0,1,204,64Z"/></svg></a></div>
+  <div class="actions"><a class="btn btn-primary" href="https://www.youtube.com/watch?v=vn529RdmOZc" target="_blank" rel="noopener">Watch on YouTube<svg class="ext" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M204,64V168a12,12,0,0,1-24,0V93L72.49,200.49a12,12,0,0,1-17-17L163,76H88a12,12,0,0,1,0-24H192A12,12,0,0,1,204,64Z"/></svg></a></div>
   <p class="lede">A dreamlike short film following Jagan through a reality where his greatest loss never happened. Written, directed and edited by Rudeep Ramesh.</p>
   <section class="block"><h2>Overview</h2><p>In a fragile, dreamlike reality, Jagan drifts through a world where his greatest loss never happened, but the truth pressing at the edges threatens to shatter the refuge he&#x27;s built. Can he find his way back, or lose himself in it forever? Aantharam was a chance to explore narrative filmmaking end to end, from script to final cut, shaping a single vision across writing, direction and edit.</p></section>
 <section class="block"><h2>The Challenge</h2><p>Aantharam came with real constraints. The entire film had to be captured in a single day: one shoot permission, no room for reshoots. The budget was tight, the crew deliberately small, and the kit pared down to only the essentials. The cast were first-time screen actors, and with no built sets, every location had to work exactly as found. The challenge was to turn all of that into an advantage: to plan tightly enough that limitation became discipline rather than compromise.</p></section>

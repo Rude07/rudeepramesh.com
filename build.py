@@ -10,7 +10,7 @@ install step. Outputs:
 
 Safe to run repeatedly. Does NOT touch index.html, admin/, assets/, js/.
 """
-import os, re, json, glob, html, math, datetime
+import os, re, json, glob, html, math, datetime, subprocess
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 PROJ_DIR = os.path.join(ROOT, "content", "projects")
@@ -89,6 +89,36 @@ def rooted(path):
     if path.startswith("http") or path.startswith("/"):
         return path
     return "/" + path.lstrip("./")
+
+
+YT_ID = re.compile(r"(?:youtu\.be/|youtube(?:-nocookie)?\.com/(?:watch\?(?:[^#]*&)?v=|embed/|shorts/|live/))([\w-]{11})")
+
+
+def youtube_id(url):
+    """The 11-char video id from any YouTube URL form, or None."""
+    m = YT_ID.search(str(url or ""))
+    return m.group(1) if m else None
+
+
+def _iso_upload_date(v):
+    """CMS date -> ISO 8601 with a timezone (IST when only a date is given)."""
+    v = str(v or "").strip()
+    if re.match(r"^\d{4}-\d{2}-\d{2}$", v):
+        return v + "T00:00:00+05:30"
+    return v or None
+
+
+def _iso_duration(v):
+    """'7:55', '1:02:03' or seconds -> ISO 8601 duration (PT7M55S)."""
+    parts = [x for x in str(v or "").strip().split(":") if x.strip()]
+    if not parts or not all(x.strip().isdigit() for x in parts) or len(parts) > 3:
+        return None
+    secs = 0
+    for x in parts:
+        secs = secs * 60 + int(x)
+    h, rem = divmod(secs, 3600)
+    m, sec = divmod(rem, 60)
+    return "PT" + ("%dH" % h if h else "") + ("%dM" % m if m else "") + ("%dS" % sec if sec or not (h or m) else "")
 
 
 def paragraphs(text):
@@ -189,7 +219,7 @@ __FILMGRAIN__
 
 /* case study */
 .crumbs{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;color:#8A9099;text-transform:uppercase}
-.crumbs a{transition:color .2s __EASE__}
+.crumbs a{transition:color .2s __EASE__;display:inline-block;padding:14px 4px;margin:-14px -4px}
 .crumbs a:hover{color:var(--ac-ink)}
 h1{font-size:clamp(2.4rem,7vw,5rem);font-weight:900;letter-spacing:-.04em;line-height:.95;
  text-transform:uppercase;margin:16px 0 22px}
@@ -200,6 +230,7 @@ h1{font-size:clamp(2.4rem,7vw,5rem);font-weight:900;letter-spacing:-.04em;line-h
 .hero-media{position:relative;aspect-ratio:16/9;overflow:hidden;border:1px solid rgba(255,255,255,.08);
  background:#0E1013;margin-bottom:24px}
 .hero-media img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-media iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
 .play-disc{position:absolute;left:50%;top:50%;width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;
  background:var(--ac);display:flex;align-items:center;justify-content:center;
  transition:background-color .2s __EASE__,transform .12s __EASE__}
@@ -338,6 +369,26 @@ def project_page(slug, p):
     meta = "".join(meta_bits)
 
     # JSON-LD: CreativeWork + VideoObject + BreadcrumbList
+    vid = youtube_id(p.get("videoUrl"))
+    # VideoObject only for a film actually playable on this page (embedded
+    # YouTube), with real dates: a guessed uploadDate is worse than none.
+    video = None
+    if vid:
+        upload = _iso_upload_date(p.get("videoUploadDate"))
+        if not upload:
+            print('  ! %s: no "Video upload date" set, so Google may skip the video' % slug)
+        video = {
+            "@type": "VideoObject",
+            "@id": url + "#video",
+            "name": title,
+            "description": desc,
+            "thumbnailUrl": thumb_abs,
+            "uploadDate": upload,
+            "duration": _iso_duration(p.get("videoDuration")),
+            "embedUrl": "https://www.youtube.com/embed/%s" % vid,
+            "creator": {"@id": DOMAIN + "/#person"},
+            "mainEntityOfPage": url,
+        }
     ld = {
         "@context": "https://schema.org",
         "@graph": [
@@ -352,16 +403,9 @@ def project_page(slug, p):
                 "creator": {"@type": "Person", "@id": DOMAIN + "/#person", "name": PERSON},
                 "author": {"@type": "Person", "@id": DOMAIN + "/#person", "name": PERSON},
                 "dateCreated": p.get("year"),
+                "video": {"@id": url + "#video"} if video else None,
             },
-            {
-                "@type": "VideoObject",
-                "name": title,
-                "description": desc,
-                "thumbnailUrl": thumb_abs,
-                "uploadDate": str(p.get("year", "")) + "-01-01" if p.get("year") else None,
-                "contentUrl": p.get("videoUrl"),
-                "embedUrl": p.get("videoUrl"),
-            },
+            video,
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
@@ -377,12 +421,24 @@ def project_page(slug, p):
         if isinstance(o, dict):
             return {k: clean(v) for k, v in o.items() if v is not None}
         if isinstance(o, list):
-            return [clean(x) for x in o]
+            return [clean(x) for x in o if x is not None]
         return o
     ld = clean(ld)
 
-    watch = ('<a class="btn btn-primary" href="%s" target="_blank" rel="noopener">Watch the film%s</a>'
-             % (esc(p.get("videoUrl", "#")), ARROW_EXT))
+    if vid:
+        # play the film on the page itself; the thumbnail stays as og:image
+        media = ('<iframe src="https://www.youtube.com/embed/%s?rel=0" title="%s, %s by %s" '
+                 'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" '
+                 'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
+                 % (vid, esc(title), esc(p.get("category", "")), esc(PERSON)))
+    else:
+        media = ('<img src="%s" alt="%s, %s by %s" width="1280" height="720" fetchpriority="high" decoding="async">\n'
+                 '    <a class="play-disc" href="%s" target="_blank" rel="noopener" aria-label="Play %s"><span></span></a>'
+                 % (esc(thumb), esc(title), esc(p.get("category", "")), esc(PERSON),
+                    esc(p.get("videoUrl", "#")), esc(title)))
+
+    watch = ('<a class="btn btn-primary" href="%s" target="_blank" rel="noopener">%s%s</a>'
+             % (esc(p.get("videoUrl", "#")), "Watch on YouTube" if vid else "Watch the film", ARROW_EXT))
 
     return """<!DOCTYPE html>
 <html lang="en">
@@ -412,8 +468,7 @@ def project_page(slug, p):
   <h1>%(title)s</h1>
   <dl class="meta">%(meta)s</dl>
   <div class="hero-media">
-    <img src="%(thumb)s" alt="%(title)s, %(category)s by %(person)s" width="1280" height="720" fetchpriority="high" decoding="async">
-    <a class="play-disc" href="%(video)s" target="_blank" rel="noopener" aria-label="Play %(title)s"><span></span></a>
+    %(media)s
   </div>
   <div class="actions">%(watch)s</div>
   <p class="lede">%(summary)s</p>
@@ -427,10 +482,9 @@ def project_page(slug, p):
 """ % {
         "page_title": esc(page_title), "desc": esc(desc), "url": esc(url),
         "og_title": esc(title + " \u2014 " + PERSON), "thumb_abs": esc(thumb_abs),
-        "ld": json.dumps(ld, indent=2), "fonts": FONTS, "css": CSS,
+        "ld": _ld_json(ld), "fonts": FONTS, "css": CSS,
         "header": header_html(), "title": esc(title), "meta": meta,
-        "thumb": esc(thumb), "category": esc(p.get("category", "")), "person": esc(PERSON),
-        "video": esc(p.get("videoUrl", "#")), "watch": watch,
+        "media": media, "watch": watch,
         "summary": esc(p.get("summary", "")), "blocks": blocks, "tools": tools,
         "footer": footer_html(), "scripts": PAGE_SCRIPTS, "arrow": ARROW_RIGHT, "arrow_left": ARROW_LEFT,
     }
@@ -477,18 +531,32 @@ def work_index(projects):
 %(footer)s
 </body>
 </html>
-""" % {"person": esc(PERSON), "domain": esc(DOMAIN), "ld": json.dumps(ld, indent=2),
+""" % {"person": esc(PERSON), "domain": esc(DOMAIN), "ld": _ld_json(ld),
        "fonts": FONTS, "css": CSS, "header": header_html(), "cards": cards, "footer": footer_html(),
        "scripts": PAGE_SCRIPTS}
 
 
+def _last_changed(*paths):
+    """Date (YYYY-MM-DD) of the last commit touching any of these files, or
+    None when git or its history is unavailable. A wrong date is worse than
+    none: Google stops trusting lastmod that changes on every build."""
+    try:
+        out = subprocess.run(["git", "log", "-1", "--format=%cs", "--"] + list(paths),
+                             cwd=ROOT, capture_output=True, text=True, timeout=10).stdout.strip()
+    except Exception:
+        return None
+    return out if re.match(r"^\d{4}-\d{2}-\d{2}$", out) else None
+
+
 def sitemap(projects):
-    today = datetime.date.today().isoformat()
-    urls = [(DOMAIN + "/", "1.0"), (DOMAIN + "/work/", "0.8")]
-    urls += [("%s/work/%s/" % (DOMAIN, slug), "0.7") for slug, _ in projects]
+    proj_files = ["content/projects/%s.json" % slug for slug, _ in projects]
+    urls = [(DOMAIN + "/", _last_changed("content/site.json")),
+            (DOMAIN + "/work/", _last_changed(*proj_files) if proj_files else None)]
+    urls += [("%s/work/%s/" % (DOMAIN, slug), _last_changed(f))
+             for (slug, _), f in zip(projects, proj_files)]
     body = "".join(
-        '  <url><loc>%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>\n' % (u, today, pr)
-        for u, pr in urls)
+        "  <url><loc>%s</loc>%s</url>\n" % (u, "<lastmod>%s</lastmod>" % d if d else "")
+        for u, d in urls)
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n%s</urlset>\n' % body)
 
@@ -583,13 +651,50 @@ def _alt_tag(tag):
     return str(tag or "").replace(" \u00b7 ", ", ")
 
 
-def _render_films(markup, films):
+EXT_ATTRS = ' target="_blank" rel="noopener"'
+# the card's "WATCH <arrow>" label; the arrow is index.html's .ico svg
+CARD_LABEL = re.compile(r'(?:WATCH|CASE STUDY) (<svg class="ico"[^>]*><path d=")[^"]*("/></svg>)')
+PATH_EXT = re.search(r'<path d="([^"]*)"', ARROW_EXT).group(1)
+PATH_RIGHT = re.search(r'<path d="([^"]*)"', ARROW_RIGHT).group(1)
+
+
+def _study_slug(item, studies, slugs):
+    """Case-study slug a homepage card should link to, or None.
+
+    The CMS "Link to case study" setting on each card decides:
+      auto (default) - link when a case study uses the same YouTube video
+      manual         - link to the case study picked in the CMS
+      off            - always open the video link"""
+    mode = item.get("caseStudyLink") or "auto"
+    if mode == "off":
+        return None
+    if mode == "manual":
+        pick = item.get("caseStudy")
+        if pick in slugs:
+            return pick
+        print('  ! "%s": case study "%s" not found, matching by video instead'
+              % (item.get("title", "").strip(), pick or ""))
+    return studies.get(youtube_id(item.get("href")))
+
+
+def _card_link(node, slug):
+    """Point a rendered card at its case study (same tab), or off-site."""
+    if slug:
+        node = node.replace(EXT_ATTRS, "", 1)
+        return CARD_LABEL.sub(lambda m: "CASE STUDY " + m.group(1) + PATH_RIGHT + m.group(2), node, count=1)
+    return CARD_LABEL.sub(lambda m: "WATCH " + m.group(1) + PATH_EXT + m.group(2), node, count=1)
+
+
+def _render_films(markup, films, studies, slugs):
     tpl = _template(markup, "tpl-film")
     out = []
     for f in films:
         d = dict(f)
         d["alt_tag"] = _alt_tag(f.get("tag"))
-        out.append(_fill(tpl, d))
+        slug = _study_slug(f, studies, slugs)
+        if slug:
+            d["href"] = "/work/%s/" % slug
+        out.append(_card_link(_fill(tpl, d), slug))
     return "\n".join(out)
 
 
@@ -755,19 +860,28 @@ def _render_hero_play(site):
             '<span class="sr-only"> (opens in a new tab)</span></a>' % esc(link))
 
 
+def _ld_json(ld):
+    """JSON for a <script type="application/ld+json"> block. Script contents
+    are not HTML-decoded, so &amp; would reach Google literally; escape only
+    what could close the tag, as JSON unicode escapes."""
+    return (json.dumps(ld, indent=2, ensure_ascii=False)
+            .replace("<", "\\u003c").replace(">", "\\u003e"))
+
+
 def _render_jsonld(site):
     s, seo = site["schema"], site["seo"]
-    canonical = seo.get("canonical", "")
-    ld = {
-        "@context": "https://schema.org",
+    canonical = seo.get("canonical", "").rstrip("/")
+    home = canonical + "/"
+    person = {
         "@type": "Person",
         "@id": canonical + "/#person",
         "name": s.get("name"),
         "alternateName": s.get("alternateName"),
-        "url": canonical,
+        "url": canonical + "/",
         "image": canonical + "/" + (seo.get("ogImage") or ""),
         "jobTitle": s.get("jobTitle"),
-        "worksFor": {"@type": "Organization", "name": s.get("worksFor")},
+        "worksFor": {k: v for k, v in (("@type", "Organization"), ("name", s.get("worksFor")),
+                                        ("url", s.get("worksForUrl"))) if v},
         "address": {
             "@type": "PostalAddress",
             "addressLocality": s.get("locality"),
@@ -779,12 +893,37 @@ def _render_jsonld(site):
         "knowsAbout": s.get("knowsAbout"),
         "sameAs": [u for u in (s.get("sameAs") or []) if u and "REPLACE_WITH" not in u],
     }
-    return html.escape(json.dumps(ld, indent=2, ensure_ascii=False), quote=False)
+    # WebSite names the site (Google's site name in results); ProfilePage
+    # says the homepage is a profile whose subject is the Person above
+    website = {
+        "@type": "WebSite",
+        "@id": canonical + "/#website",
+        "url": home,
+        "name": s.get("name"),
+        "alternateName": s.get("alternateName"),
+        "publisher": {"@id": canonical + "/#person"},
+        "inLanguage": "en",
+    }
+    profile = {
+        "@type": "ProfilePage",
+        "@id": canonical + "/#profilepage",
+        "url": home,
+        "name": seo.get("title"),
+        "isPartOf": {"@id": canonical + "/#website"},
+        "mainEntity": {"@id": canonical + "/#person"},
+        "inLanguage": "en",
+    }
+    return _ld_json({"@context": "https://schema.org", "@graph": [person, website, profile]})
 
 
-def prerender_index(site):
+def prerender_index(site, projects):
     path = os.path.join(ROOT, "index.html")
     h = open(path, encoding="utf-8").read()
+
+    # homepage cards can link to these case studies (see _study_slug)
+    slugs = {slug for slug, _ in projects}
+    studies = {youtube_id(p.get("videoUrl")): slug for slug, p in projects}
+    studies.pop(None, None)
 
     hero = site["hero"]
     about = site["about"]
@@ -799,6 +938,9 @@ def prerender_index(site):
     h = _swap_meta(h, r'name="description"', seo["description"])
     h = _swap_meta(h, r'property="og:title"', seo["title"])
     h = _swap_meta(h, r'property="og:description"', seo["description"])
+    h = _swap_meta(h, r'property="og:url"', DOMAIN + "/")
+    h = re.sub(r'(<link rel="canonical" href=")([^"]*)(")',
+               lambda m: m.group(1) + esc(DOMAIN + "/") + m.group(3), h, count=1)
     h = _swap_el(h, "person-jsonld", _render_jsonld(site))
 
 
@@ -843,9 +985,22 @@ def prerender_index(site):
     h = _swap_el(h, "brandsTrackB", setB)
 
     # ---- featured ----
+    feat_slug = _study_slug(feat, studies, slugs)
+    feat_href = "/work/%s/" % feat_slug if feat_slug else feat["href"]
     h = re.sub(r'(<a[^>]*\bid="featLink"[^>]*\bhref=")([^"]*)(")',
-               lambda m: m.group(1) + esc(feat["href"]) + m.group(3), h, count=1)
+               lambda m: m.group(1) + esc(feat_href) + m.group(3), h, count=1)
+    # same-tab for the case study, new tab for an off-site video
+    h = re.sub(r'<a\b[^>]*\bid="featLink"[^>]*>',
+               lambda m: m.group(0).replace(EXT_ATTRS, "").replace(
+                   'id="featLink"', 'id="featLink"' + ("" if feat_slug else EXT_ATTRS), 1),
+               h, count=1)
+    a, b = _inner_span(h, "featLink")
+    h = h[:a] + _card_link(h[a:b], feat_slug) + h[b:]
+    # src and data-src must match, or the browser fetches the stale src first
+    # and site.js then swaps in data-src: two downloads for one image
     h = re.sub(r'(<img[^>]*\bid="featImg"[^>]*\bdata-src=")([^"]*)(")',
+               lambda m: m.group(1) + esc(feat["thumb"]) + m.group(3), h, count=1)
+    h = re.sub(r'(<img[^>]*\bid="featImg"[^>]*\ssrc=")([^"]*)(")',
                lambda m: m.group(1) + esc(feat["thumb"]) + m.group(3), h, count=1)
     # loading-text and thumbnail badges were removed from the design; the
     # CMS fields still exist, so fill them only if the markup comes back
@@ -857,7 +1012,7 @@ def prerender_index(site):
     h = _swap_el(h, "featByline", esc(feat["byline"]))
 
     # ---- work grids ----
-    h = _swap_el(h, "filmsGrid", _render_films(h, site["films"]))
+    h = _swap_el(h, "filmsGrid", _render_films(h, site["films"], studies, slugs))
     h = _swap_el(h, "reelsGrid", _render_reels(h, site["reels"]))
 
     # ---- about ----
@@ -925,7 +1080,7 @@ def main():
     with open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8") as fh:
         fh.write(sitemap(projects))
 
-    prerender_index(site)
+    prerender_index(site, projects)
 
     print("Built %d project pages + work index + sitemap." % len(projects))
     for slug, p in projects:
