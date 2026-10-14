@@ -206,7 +206,7 @@
     },
     {
       "name": "M3DB Cafe",
-      "logo": "/images/uploads/m3db-cafe-logo.png"
+      "logo": "/images/uploads/m3db-cafe-logo.webp"
     },
     {
       "name": "M3DB",
@@ -284,7 +284,7 @@
     "badgeLeft": "FT",
     "badgeRight": "● DIR. BY RUDEEP",
     "href": "https://youtu.be/vn529RdmOZc?si=tNI8rp4gXpGrU036",
-    "thumb": "assets/thumbs/aantharam.jpg"
+    "thumb": "/images/uploads/aantharam.webp"
   },
   "films": [
     {
