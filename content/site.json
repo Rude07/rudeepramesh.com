@@ -108,7 +108,9 @@
       "Midjourney",
       "Adobe Firefly",
       "ElevenLabs",
-      "Artlist"
+      "Artlist",
+      "Claude",
+      ""
     ]
   },
   "nav": {
@@ -486,7 +488,7 @@
     "tagline": "6+ years of direction, camera, lighting, editing and motion graphics. Cinematic films for education, retail, manufacturing and corporate brands.",
     "image": "",
     "reel": {
-      "enabled": true,
+      "enabled": false,
       "video": "",
       "poster": "",
       "link": "#work",
