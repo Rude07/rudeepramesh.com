@@ -313,6 +313,35 @@ collections:
               - { label: "Heading line 1", name: "headingLine1", widget: "string" }
               - { label: "Heading line 2", name: "headingLine2", widget: "string" }
               - { label: "Heading accent word", name: "headingAccent", widget: "string" }
+              - label: "Background image (optional)"
+                name: "background"
+                widget: "object"
+                collapsed: true
+                required: false
+                hint: "A photo behind the contact section, under a dark fade so the heading and links stay readable. Leave the image empty for the plain dark section."
+                fields:
+                  - { label: "Image", name: "image", widget: "image", required: false, default: "", hint: "Landscape, at least 1920 wide. JPG or WebP under 500 KB loads fastest. Keep the subject on the right: the heading and links sit on the left." }
+                  - label: "Darkness"
+                    name: "darkness"
+                    widget: "select"
+                    required: false
+                    default: "medium"
+                    options:
+                      - { label: "Light (photo shows strongly)", value: "light" }
+                      - { label: "Medium", value: "medium" }
+                      - { label: "Strong (photo is subtle)", value: "strong" }
+                  - label: "Image focus"
+                    name: "position"
+                    widget: "select"
+                    required: false
+                    default: "center"
+                    hint: "Which part of the photo stays in frame when the screen crops it (phones crop the sides)."
+                    options:
+                      - { label: "Centre", value: "center" }
+                      - { label: "Left", value: "left" }
+                      - { label: "Right", value: "right" }
+                      - { label: "Top", value: "top" }
+                      - { label: "Bottom", value: "bottom" }
               - label: "Contact rows"
                 name: "links"
                 widget: "list"

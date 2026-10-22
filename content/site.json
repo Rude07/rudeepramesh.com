@@ -3,6 +3,11 @@
     "headingLine1": "Let's make",
     "headingLine2": "something",
     "headingAccent": "cinematic.",
+    "background": {
+      "image": "/images/uploads/contact-blue-hour.webp",
+      "darkness": "medium",
+      "position": "right"
+    },
     "links": [
       {
         "label": "Email",

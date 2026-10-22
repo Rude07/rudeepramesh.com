@@ -848,6 +848,24 @@ def _render_hero_reel(site):
     return "".join(out)
 
 
+CONTACT_BG_FOCUS = {"center": "50% 50%", "left": "0% 50%", "right": "100% 50%",
+                    "top": "50% 0%", "bottom": "50% 100%"}
+
+
+def _render_contact_bg(c):
+    """(class, inner html) for the contact background (CMS: Contact >
+    Background image). No image leaves the div empty, which CSS hides."""
+    bg = c.get("background") or {}
+    img = (bg.get("image") or "").strip()
+    dark = bg.get("darkness") if bg.get("darkness") in ("light", "strong") else ""
+    cls = "contact-bg" + (" contact-bg--" + dark if dark and img else "")
+    if not img:
+        return cls, ""
+    focus = CONTACT_BG_FOCUS.get(bg.get("position"), "50% 50%")
+    return cls, ('<img src="%s" alt="" loading="lazy" decoding="async" width="1376" height="768"'
+                 ' style="object-position:%s">' % (esc(img), focus))
+
+
 def _render_hero_play(site):
     """'Watch showreel' button, only when the CMS link points off-site (a
     YouTube/Vimeo showreel). The default #work is already the View work CTA."""
@@ -1047,6 +1065,10 @@ def prerender_index(site, projects):
                  esc(c["headingLine1"]) + "<br>" + esc(c["headingLine2"]) +
                  ' <span style="color:var(--ac-ink);">' + esc(c["headingAccent"]) + "</span>")
     h = _swap_el(h, "contactLinks", _render_contact_links(h, c["links"]))
+    if 'id="contactBg"' in h:
+        bg_cls, bg_html = _render_contact_bg(c)
+        h = re.sub(r'<div id="contactBg" class="[^"]*"', '<div id="contactBg" class="%s"' % bg_cls, h, count=1)
+        h = _swap_el(h, "contactBg", bg_html)
     h = _swap_el(h, "footCopy", esc(site["footer"]["copyright"]))
     h = _swap_el(h, "footLoc", esc(site["footer"]["location"]))
 
