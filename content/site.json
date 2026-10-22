@@ -488,8 +488,8 @@
     "image": "",
     "reel": {
       "enabled": true,
-      "video": "",
-      "poster": "",
+      "video": "/images/uploads/bg-showreel.mp4",
+      "poster": "/images/uploads/firefly_gemini-flash_full-colour-dim-blue-hour-light-through-the-window-deep-navy-shadows-a-faint-warm-517607.png",
       "link": "#work",
       "stills": []
     }
